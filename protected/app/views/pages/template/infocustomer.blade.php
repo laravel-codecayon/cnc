@@ -1,0 +1,34 @@
+<section class="row_section" style='  '><div class="container"><div class="row"><div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><section class="clearfix">       
+      <section class="breadcrumbs clearfix">
+          <a href="{{URL::to('')}}" title="Trang chủ"><i class="fa fa-home"></i></a>
+                                  
+                &nbsp;&nbsp;/&nbsp;&nbsp;<a href="#">Thông tin tài khoản của bạn</a>                
+                                      </section>
+
+</section></div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  <section id="acc">
+    <div class="itemacc">
+
+            <article class="acc-info">
+            <h2><span>Thông tin cá nhân</span></h2>
+            <ul>
+            <li>Xin chào, <strong> {{{$input['name']}}}</strong> !</li>
+            <li><label>Tên đầy đủ</label> : <span> {{{$input['name']}}}</span></li>
+            <li><label>Tên truy cập</label> : <span>{{{$input['username']}}}</span></li>
+            <li><label>Địa chỉ liên lạc</label> : <span>{{{$input['address']}}}</span></li>
+            <li><label>Số Điện Thoại</label> : <span>{{{$input['phone']}}}</span></li>
+            <li><label>Email</label> : <span>{{$input['email']}}</span></li>
+            </ul>
+        
+        </article>
+        <article class="acc-cart">
+            <h2><span> Tài khoản và giỏ hàng</span></h2>
+            <ul>
+                <li><span class="bullet"></span><a href="{{URL::to('')}}/doi-mat-khau.html">Thay đổi mật khẩu</a></li>
+                <li><span class="bullet"></span><a href="{{URL::to('')}}/thay-doi-thong-tin-thanh-vien.html">Thay đổi thông tin</a></li>
+                <li><span class="bullet"></span><a href="http://donghott.vnws.com/don-hang-cua-ban.html">Đơn hàng</a></li>
+            
+            </ul>
+        </article>    
+    
+
+  </div>

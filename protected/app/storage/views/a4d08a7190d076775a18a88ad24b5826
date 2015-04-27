@@ -1,0 +1,115 @@
+<?php echo HTML::script('sximo/themes/dongho/js/jquery.jcombo.min.js'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/BeatPicker.min.css'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/BeatPicker.min.js'); ?>
+<section class="row_section" style='  '><div class="container"><div class="row"><div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><section class="clearfix">       
+
+      <section class="breadcrumbs clearfix">
+          <a href="<?php echo URL::to(''); ?>" title="Trang chủ"><i class="fa fa-home"></i></a>
+
+                &nbsp;&nbsp;/&nbsp;&nbsp;<a href="#">Thay đổi thông tin</a>
+                                      </section>
+
+</section></div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <?php if(Session::has('message_changeinfo')): ?>
+                     <?php echo Session::get('message_changeinfo'); ?>
+                <?php endif; ?>
+                <ul class="parsley-error-list">
+                  <?php foreach($errors->all() as $error): ?>
+                    <li><?php echo $error; ?></li>
+                  <?php endforeach; ?>
+                </ul>
+   <section class="">
+
+           <form method="post" id="register" class="cmxform" action="<?php echo URL::to('home/changeinfo'); ?>" >
+        <input type="hidden" name="act" value="add">
+
+      <div  id="register_has_been_successed">
+                  <section id="signup" class="clearfix" >
+            <div class="row">
+              <div class="col-lg-12">
+                <section class="block">
+                  <div class="heading">Thông tin cá nhân</div>
+                    <div class="main-inner">
+                                            <div class="clearfix">
+                        <label for="name">Tên</label>
+                                                <input class="input" type="text" id="user_first_name" name="name" value="<?php echo $input['name']; ?>">
+                      </div>
+
+                      <div class="clearfix">
+                        <label for="birthday">Ngày sinh</label>
+                        <input class="input" name="birthday" value="<?php echo $input['birthday']; ?>" type="text" data-beatpicker="true" data-beatpicker-format="['DD','MM','YYYY'],separator:'-'" />
+                      </div>
+                                            <div class="clearfix">
+                                            <label for="user_phone">Giới tính </label>
+                                              <select name="sex">
+                                                  <option <?php if($input['sex'] == 1): ?> selected <?php endif; ?> value="1">Nam </option>
+                                                    <option <?php if($input['sex'] == 0): ?> selected <?php endif; ?> value="0">Nữ </option>
+                                                    <option <?php if($input['sex'] == 2): ?> selected <?php endif; ?> value="2">Khác </option>
+                                                </select>
+
+                      </div>
+                                            <div class="clearfix">
+                        <label for="phone">Số Điện Thoại</label>
+                        <input class="input" maxlength="40" type="text" id="phone" name="phone" value="<?php echo $input['phone']; ?>">
+                      </div>      
+
+
+                                            <div class="clearfix">
+                                              <label>Địa chỉ </label>
+                                              <input type="text" class="input user_address_1" name="address" value="<?php echo $input['address']; ?>">
+                                              <div class="err_user_address_1"></div>
+                                            </div>
+                                            <div class="clearfix">
+                                              <label>Tỉnh / Thành phố</label>
+                                              <select name="provinceid" id="city" class="input user_city"></select>
+                                              <div class="err_list_region"></div>
+                                            </div> 
+                                            <div class="clearfix">
+                                                <label>Quận / Huyện</label>
+                                                <span id="city_ajax"></span>
+                                                <select name="districtid" id="district" class="input user_city"></select>
+                                                <div class="err_user_city"></div>
+                                            </div>
+                                            <div class="clearfix">
+                                                <label>Phường / Xã</label>
+                                                <span id="city_ajax"></span>
+                                                <select name="wardid" id="ward" class="input user_city"></select>
+                                                <div class="err_user_city"></div>
+                                            </div>
+                                            
+                        <?php if(CNF_RECAPTCHA =='true'): ?> 
+                        <div class="clearfix">
+                        <label for="email">Mã bảo mật</label>
+                          <?php echo Form::captcha(array('theme' => 'white'));; ?>
+                          </div>
+                        <?php endif; ?>
+                        
+                      
+                        <input type="submit" class="submit" value="Gửi">
+                    </div>
+                </section>
+
+              </div>
+            </div><!--End Row-->
+        </section> <!--End listitem-->
+      </div> <!--End row--> 
+    </form>  <div id="cssmenu"></div> 
+  <div id="tooltip"></div>
+</section>
+<script type="text/javascript">
+          $(document).ready(function() { 
+            $("#city").jCombo("<?php echo URL::to('ward/comboselect?filter=province:provinceid:name'); ?>",
+            {  selected_value : "<?php echo $input['provinceid']; ?>",initial_text: "-- Tỉnh/Thành --", });
+            $("#city").on('change', function() {
+              var val = this.value ; 
+              $("#district").jCombo("<?php echo URL::to('ward/comboselect?filter=district:districtid:name:'); ?>"+val,
+            {  selected_value : "<?php echo $input['districtid']; ?>",initial_text: "-- Quận/Huyện --", });
+            });
+            $("#district").on('change', function() {
+              var val = this.value ; 
+              $("#ward").jCombo("<?php echo URL::to('ward/comboselect?filter=ward:wardid:name:'); ?>"+val,
+            {  selected_value : "<?php echo $input['wardid']; ?>",initial_text: "-- Phường/Xã --", });
+            });
+          });
+        </script>
+

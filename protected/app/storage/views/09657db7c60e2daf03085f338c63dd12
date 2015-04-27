@@ -1,0 +1,26 @@
+<?php if(isset($menu) && $menu == "index"): ?>
+<?php /**/ $hot = SiteHelpers::getProductHot(); /**/ ?>
+<?php if($hot != ''): ?>
+<section class="row-section top-html " style='  '>
+	<div class="container">
+		<section class="clearfix" id="block-feature">
+			<div class="line"> </div>
+			<div class="row">
+				<?php foreach($hot as $pro): ?>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+					<div class="feature">
+					<div class="image"><a href="<?php echo URL::to(''); ?>/chi-tiet/<?php echo $pro->slug; ?>-<?php echo $pro->ProductID; ?>.html" title="<?php echo $pro->ProductName; ?>"><img alt="<?php echo $pro->ProductName; ?>" class="trans-hover" src="<?php echo URL::to(''); ?>/uploads/products/thumb/<?php echo $pro->image2; ?>" title="<?php echo $pro->ProductName; ?>" /> </a></div>
+
+						<p><?php echo e($pro->ProductName); ?> <?php echo e($pro->ProductCode); ?></p>
+					</div>
+				</div>
+				<?php endforeach; ?>
+
+			</div>
+
+			<div class="line"> </div>
+		</section>
+	</div>
+</section>
+<?php endif; ?>
+<?php endif; ?>

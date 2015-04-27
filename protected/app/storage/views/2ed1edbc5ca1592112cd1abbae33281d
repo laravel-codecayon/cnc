@@ -1,0 +1,60 @@
+<?php /**/ $menus = SiteHelpers::menus('top') /**/ ?>
+<nav id="nav">
+        <ul class="nav navbar-nav default">
+            <?php foreach ($menus as $menu): ?>
+             <li <?php if(count($menu['childs']) > 0 ): ?> class="dropdown" <?php endif; ?> >
+                <a level="1" target="_self"
+                <?php if($menu['menu_type'] =='external'): ?>
+                    href="<?php echo URL::to($menu['url']."/#"); ?>" 
+                <?php else: ?>
+                    href="<?php echo URL::to($menu['module']); ?>" 
+                <?php endif; ?>
+             
+                 <?php if(count($menu['childs']) > 0 ): ?> class="dropdown-toggle" data-toggle="" <?php endif; ?>>
+                    <?php echo $menu['menu_name']; ?>
+                </a> 
+                <?php if(count($menu['childs']) > 0): ?>
+                     <ul class="dropdown-menu">
+                        <?php foreach ($menu['childs'] as $menu2): ?>
+                         <li class=" 
+                         <?php if(count($menu2['childs']) > 0): ?> dropdown-submenu <?php endif; ?>
+                         <?php if(Request::is($menu2['module'])): ?>  <?php endif; ?>">
+                            <a tabindex="-1" target="_self"
+                                <?php if($menu['menu_type'] =='external'): ?>
+                                    href="<?php echo URL::to($menu2['url']."/#"); ?>" 
+                                <?php else: ?>
+                                    href="<?php echo URL::to($menu2['module']); ?>" 
+                                <?php endif; ?>
+                                            
+                            >
+                                 <?php echo $menu2['menu_name']; ?>
+                            </a> 
+                            <?php if(count($menu2['childs']) > 0): ?>
+                            <ul class="dropdown-menu">
+                                <?php foreach($menu2['childs'] as $menu3): ?>
+                                    <li <?php if(Request::is($menu3['module'])): ?>  <?php endif; ?>>
+                                        <a 
+                                            <?php if($menu['menu_type'] =='external'): ?>
+                                                href="<?php echo URL::to($menu3['url']."/#"); ?>" 
+                                            <?php else: ?>
+                                                href="<?php echo URL::to($menu3['module']); ?>" 
+                                            <?php endif; ?>                                      
+                                        
+                                        >
+                                            <?php echo $menu3['menu_name']; ?>
+                                        </a>
+                                    </li>   
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif; ?>                          
+                            
+                        </li>                           
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>  
+            
+               	                    
+        </ul>
+      </nav>

@@ -1,0 +1,21 @@
+<?php /**/ $menus = SiteHelpers::menus('footer') /**/ ?>
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!--$css_item,$box_width,$position,$num_item_row -->
+		
+	<h3>Bài viết xem nhiều</h3>
+	<ul class="news-footer">
+			<?php foreach ($menus as $menu): ?>
+				<li>
+					<a 
+					<?php if($menu['menu_type'] =='external'): ?>
+	                    href="<?php echo URL::to($menu['url'].$menu['module']); ?>" 
+	                <?php else: ?>
+	                    href="<?php echo URL::to($menu['module']); ?>" 
+	                <?php endif; ?> 
+
+	                title="<?php echo $menu['menu_name']; ?>">
+						<span><?php echo $menu['menu_name']; ?></span>
+					</a>
+				</li>
+			<?php endforeach; ?>
+	</ul>	
+	</div>

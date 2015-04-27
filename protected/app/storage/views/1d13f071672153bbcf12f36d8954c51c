@@ -1,0 +1,79 @@
+<div class="page-content row">
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="page-title">
+        <h3> <?php echo $pageTitle; ?> <small><?php echo $pageNote; ?></small></h3>
+      </div>
+      <ul class="breadcrumb">
+        <li><a href="<?php echo URL::to('config/dashboard'); ?>"><?php echo Lang::get('core.home'); ?></a></li>
+		<li><a href="<?php echo URL::to('News?md='.$masterdetail["filtermd"]); ?>"><?php echo $pageTitle; ?></a></li>
+        <li class="active"> <?php echo Lang::get('core.detail'); ?> </li>
+      </ul>
+	 </div>  
+	 
+	 
+ 	<div class="page-content-wrapper">   
+	   <div class="toolbar-line">
+	   		<a href="<?php echo URL::to('News?md='.$masterdetail["filtermd"].$trackUri); ?>" class="tips btn btn-xs btn-default" title="<?php echo Lang::get('core.btn_back'); ?>"><i class="icon-table"></i>&nbsp;<?php echo Lang::get('core.btn_back'); ?></a>
+			<?php if($access['is_add'] ==1): ?>
+	   		<a href="<?php echo URL::to('News/add/'.$id.'?md='.$masterdetail["filtermd"].$trackUri); ?>" class="tips btn btn-xs btn-primary" title="<?php echo Lang::get('core.btn_edit'); ?>"><i class="icon-pencil3"></i>&nbsp;<?php echo Lang::get('core.btn_edit'); ?></a>
+			<?php endif; ?>  		   	  
+		</div>
+	<div class="table-responsive">
+	<table class="table table-striped table-bordered" >
+		<tbody>	
+	
+					<tr>
+						<td width='30%' class='label-view text-right'>News Id</td>
+						<td><?php echo $row->news_id; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>News Name</td>
+						<td><?php echo $row->news_name; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>News Description</td>
+						<td><?php echo $row->news_description; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>News Content</td>
+						<td><?php echo $row->news_content; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>News Status</td>
+						<td><?php if($row->news_status == 1): ?> Enable <?php else: ?> Disable <?php endif; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>News Picture</td>
+						<td><img src="/uploads/news/thumb/<?php echo $row->news_picture; ?>" /> </td>
+						
+					</tr>
+				
+					<!--<tr>
+						<td width='30%' class='label-view text-right'>Cat Id</td>
+						<td><?php echo $row->cat_id; ?> </td>
+						
+					</tr>-->
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Created</td>
+						<td><?php echo date('Y-m-d',$row->created); ?></td>
+						
+					</tr>
+				
+		</tbody>	
+	</table>    
+	</div>
+	</div>
+</div>
+	  

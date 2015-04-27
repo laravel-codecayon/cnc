@@ -1,0 +1,112 @@
+<?php /**/ $category = SiteHelpers::getMenuCategories(); /**/ ?>
+<!-- Vertical Menu -->
+<section class="box-category">
+    <div class="heading">
+        <h2><span>Hãng</span></h2>
+    </div>
+    <div class="list-group panelvmenu">
+        <?php foreach($category as $cat): ?>
+            <a href="<?php echo URL::to(''); ?>/danh-muc/<?php echo $cat->alias; ?>-<?php echo $cat->CategoryID; ?>.html" class="list-group-item-vmenu"><i class="fa fa-angle-right"></i><?php echo $cat->CategoryName; ?></a>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php /**/ $products = SiteHelpers::getMenuProductSale(); /**/ ?>
+<?php if(count($products) > 0): ?>
+
+<script>
+    var url_cat=document.URL;   
+    $(".panelvmenu a[href='"+url_cat+"']").addClass('active');  
+    $(".panelvmenu a[href='"+url_cat+"']").parents('.collapse').addClass('in');
+</script>
+</div><div><!--$css_item,$box_width,$position,$num_item_row -->
+        <!-- Product silder -->
+    <Script language="javascript">
+    $(document).ready(function() {
+        var owl101426156503 = $('#typical-products-101426156503');
+            owl101426156503.owlCarousel({
+                items : 1, 
+              itemsDesktop : [1024,1], 
+              itemsDesktopSmall : [960,3],
+              itemsTablet: [640,2],
+            });
+            $("#next101426156503").click(function(){
+                owl101426156503.trigger('owl.next');
+              })
+              $("#prev101426156503").click(function(){
+
+                owl101426156503.trigger('owl.prev');
+              })
+    });
+    </script>
+
+    <!-- Product silder -->
+    <section id="typical" class="box-category">
+      <div class="heading"> 
+        <h2>
+            <span>Sản phẩm khuyến mãi</span>
+        </h2>
+       </div>
+            <div class="main">
+                <div id="typical-products-101426156503" class="owl-carousel typical-products"> 
+
+                <!-- 1 -->
+            <?php foreach($products as $pro): ?>
+            <div class="item col3">
+                <a href="<?php echo URL::to(''); ?>/chi-tiet/<?php echo $pro->slug; ?>-<?php echo $pro->ProductID; ?>.html" title="<?php echo $pro->ProductName; ?>">
+
+                    <div class="box-feature">
+                        <img src="<?php echo URL::to(''); ?>/uploads/products/thumb/three_<?php echo $pro->image; ?>" alt="<?php echo $pro->ProductName; ?>" />
+
+                        <!--span class="product-label-special-left label">NEW</span-->
+
+                        <h3><?php echo $pro->ProductName; ?></h3>
+                    </div>
+
+                </a>
+                <p><?php echo $pro->description; ?></p>
+                                                            <span class="price-new"><?php echo number_format($pro->UnitPrice,0,',','.'); ?>đ</span>
+                                                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="typicalNavigation">
+            <a class="prev" id="prev101426156503"><i class="fa fa-chevron-left"></i></a>
+            <a class="next" id="next101426156503"><i class="fa fa-chevron-right"></i></a>
+        </div>
+    </div> 
+
+    </section>
+</div>
+<?php endif; ?>
+<div>
+<!--<section class="left-map box-category">
+<div class="heading">
+<h2><span>Bản đồ</span></h2>
+</div>
+
+<div class="main"><iframe frameborder="0" height="200" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26081603.294420466!2d-95.677068!3d37.06250000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1414725941877" style="border:0" width="100%"></iframe></div>
+</section>-->
+<?php if(isset($menu) && $menu != "detailnews" && $menu != "tintuc" ): ?>
+<?php /**/ $news = SiteHelpers::getMenuNews(); /**/ ?>
+<section class="box-category">
+                    <div class="heading">
+                        <h2><span>Tin tức mới nhất</span></h2>
+                    </div>
+                    
+                    <div class="main">
+                        <ul class="list-post-latest list_post">
+                            <?php foreach($news as $new): ?>
+                            <li>
+                                <a href="<?php echo URL::to(''); ?>/tin-tuc/<?php echo $new->news_alias; ?>-<?php echo $new->news_id; ?>.html" title="<?php echo e($new->news_name); ?>"> 
+                                    <div class="img-overflow">   
+                                        <img src="<?php echo URL::to(''); ?>/uploads/news/thumb/<?php echo $new->news_picture; ?>" alt="<?php echo e($new->news_name); ?>"/>
+                                    </div>
+                                    <p><?php echo e($new->news_name); ?></p>
+                                    <span><?php echo date('d/m/Y',$new->created); ?></span>
+                                </a>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
+
+                    </div>                    
+        </section>
+<?php endif; ?>

@@ -1,0 +1,103 @@
+<?php echo HTML::script('sximo/themes/shop/js/jquery.cookie.js'); ?>
+<section class="row_section" style='  '><div class="container"><div class="row"><div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><section class="clearfix">       
+ 
+    	<section class="breadcrumbs clearfix">
+	        <a href="<?php echo URL::to(''); ?>" title="Trang chủ"><i class="fa fa-home"></i></a>
+											            
+	            	&nbsp;&nbsp;/&nbsp;&nbsp;<a href="#">Tìm kiếm từ khóa "<?php echo e($search); ?>"</a>	            	
+	            	            					</section>
+
+</section></div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	    
+    	    	
+    	    </div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">				<!-- thanh order san pham -->
+ 				
+                <section class="utilities col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				  	<div class="filter pull-right">
+				  	
+				  	
+				  	
+				  		<div class="order-product pull-left">					
+                            <div class="btn-group"> 
+                                <span class="btn dropdown-toggle" data-toggle="dropdown"> 
+                                    <a href="#"> 
+                                        <span><i class="fa fa-sort"></i></span> 
+                                        <span>Sắp xếp</span> 
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                </span>
+                                
+                                <!-- Show Dropdown Menu -->
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="<?php echo URL::to(''); ?>/tim-kiem.html?key=<?php echo $search; ?>">
+                                            <span> Mặc định</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL::to(''); ?>/tim-kiem.html?key=<?php echo $search; ?>&sort=ProductName-asc">
+                                            <span><i class="fa fa-sort-alpha-asc"></i> Tên sản phẩm</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL::to(''); ?>/tim-kiem.html?key=<?php echo $search; ?>&sort=ProductName-desc">
+                                            <span><i class="fa fa-sort-alpha-desc"></i> Tên sản phẩm</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL::to(''); ?>/tim-kiem.html?key=<?php echo $search; ?>&sort=UnitPrice-asc">
+                                            <span><i class="fa fa-sort-numeric-asc"></i> Đơn giá</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL::to(''); ?>/tim-kiem.html?key=<?php echo $search; ?>&sort=UnitPrice-desc">
+                                            <span><i class="fa fa-sort-numeric-desc"></i> Đơn giá</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>               
+						</div>
+							
+				  	</div>
+	                            
+					<div class="view pull-right">
+						<span>Hiển thị</span>
+							<a <?php if($display != 'gird'): ?> id="change-display" type="gird" <?php endif; ?> href="javascript:0"><i class="fa fa-th <?php if($display == 'gird'): ?> active <?php endif; ?>"></i></a>
+							<a <?php if($display != 'list'): ?> id="change-display" type="list" <?php endif; ?> href="javascript:0"><i class="fa fa-th-list <?php if($display == 'list'): ?> active <?php endif; ?>"></i></a>
+					</div>
+				</section>
+				
+				<!-- thanh order san pham -->
+			 	<!--grid-->
+
+				<section id="product-listitem">
+                
+              	<div class="listitem box_9 ">
+                        <h2>
+                        <span>Kết quả của từ khóa "<?php echo e($search); ?>"</span>
+                        </h2>
+                    <?php if($display == "gird"): ?>
+                    <div class="row" >
+                    <?php endif; ?>
+                        <!-- Item 1-->
+                        <?php foreach($data as $item): ?>
+			                <?php echo SiteHelpers::templateProduct($item,$display); ?>
+			            <?php endforeach; ?>
+					<?php if($display == "gird"): ?>
+                    </div>
+                    <?php endif; ?>
+              </div>           
+			</section>             
+			<?php echo $pagination->appends(array("sort"=>"$sort","page"=>$page))->links('pagination_site'); ?>
+<script type="text/javascript"><!--
+
+$( document ).ready(function() {
+	$("#change-display").click(function(){
+		var type = $(this).attr('type');
+	    var link = "<?php echo URL::to(''); ?><?php echo $_SERVER['REQUEST_URI']; ?>";
+	    var ln = "<?php echo URL::to(''); ?>/home/changedisplay";
+		$.post( ln,{type : type}, function( data ) {
+			window.location.href = link;
+		});
+	});
+});
+//--></script>
