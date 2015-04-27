@@ -5,7 +5,7 @@
             <div class="block">
             <div class="top container move">
                 <img src="images/home-icon4.png">
-                <h2>some news from us</h2>
+                <h2>{{Lang::get('layout.some_new_from_us')}}</h2>
             </div>
             <div class="news-content container move">
             	<?php
@@ -28,7 +28,7 @@
             				}
             	?>
 								<div class="item">
-			                        <div class="meta"><span class="date">{{$item->news_name}}</span><span class="comment">50 Comment (s) </span></div>
+			                        <div class="meta"><span class="date">{{date('d/m/Y',$item->created)}}</span><span class="comment">50 Comment (s) </span></div>
 			                        <div class="image"><a href="{{URL::to('')}}/tin-tuc/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}"><img alt="{{$item->news_name}}" src="{{URL::to('')}}/uploads/news/thumb/small_{{$item->news_picture}}"></a></div>
 			                        <h3 class="title"><a href="{{URL::to('')}}/tin-tuc/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}">{{$item->news_name}}</a></h3>
 			                        <p class="content">{{$item->news_description}}</p>

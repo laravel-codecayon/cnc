@@ -50,8 +50,9 @@ class ConfigController extends BaseController  {
 			$val .= 	"define('CNF_fb','".Input::get('cnf_fb')."');\n";
 			$val .= 	"define('CNF_gg','".Input::get('cnf_gg')."');\n";
 			$val .= 	"define('CNF_tw','".Input::get('cnf_tw')."');\n";
-			$val .= 	"define('CNF_FREE','".Input::get('cnf_free')."');\n";
-			$val .= 	"define('CNF_PRICEPOST','".Input::get('cnf_pricepost')."');\n";
+			$val .= 	"define('CNF_yt','".Input::get('cnf_yt')."');\n";
+			$val .= 	"define('CNF_in','".Input::get('cnf_in')."');\n";
+			$val .= 	"define('CNF_pi','".Input::get('cnf_pi')."');\n";
 			$val .= 	"define('CNF_FOOTER','".Input::get('cnf_footer')."');\n";
 			$val .= 	"define('CNF_APPNAME','".Input::get('cnf_appname')."');\n";
 			$val .= 	"define('CNF_APPDESC','".Input::get('cnf_appdesc')."');\n";

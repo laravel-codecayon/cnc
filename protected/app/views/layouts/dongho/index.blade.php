@@ -28,14 +28,8 @@
 <body>
 <div id="hide-menu" class="hide-menu"><!-- --></div>
 <div id="menu-slide" class="menu-slide" style="position: fixed; width: 250px; transition: all 600ms ease; -webkit-transition: all 600ms ease; height: 100%; top: 0px; right: -250px;">
-    <div><a href="#"><img src="images/logo.png"></a></div>
-    <ul>
-        <li class="home"><a href="#">Home</a></li>
-        <li class="about"><a href="#">About us</a></li>
-        <li class="services"><a href="#">Services</a></li>
-        <li class="news"><a href="#">News &amp; Events</a></li>
-        <li class="contact"><a href="#">Contact us</a></li>
-    </ul><!--main-menu-->
+    <div><a href="{{URL::to('')}}"><img src="{{ asset('sximo/themes/dongho/images/logo.png')}}"></a></div>
+    @include('layouts/dongho/rightbar')<!--main-menu-->
 </div>
 <!-- Modal -->
 <div class="modal fade" id="seach-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -51,15 +45,19 @@
 </div>
 <div id="header" class="home">
     <div class="container animated fadein">
-        <div id="logo"><a href="#"><img src="images/logo.png"></a></div>
+        <div id="logo"><a href="{{URL::to('')}}"><img src="{{ asset('sximo/themes/dongho/images/logo.png')}}"></a></div>
         <div class="header-right">
             <div class="language dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                Vietnamese
+                        <?php 
+                            $lang = Session::get('lang') == '' ? CNF_LANG : Session::get('lang');
+                            echo $lang == "vi" ? 'Vietnamese' : 'English';
+                            $lang_diff = $lang == "vi" ? 'en' : 'vi';
+                        ?>
                 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">English</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{URL::to('home/lang')}}/{{$lang_diff}}"><?php echo $lang == "vi" ? 'English' : 'Vietnamese'; ?></a></li>
                 </ul>
             </div>
             <div class="consulting"><span>(08) 62 699 699</span><p>Free consulting</p></div>
@@ -70,19 +68,12 @@
             </div><!-- navigator -->
         </div><!-- header-right -->
     </div>
-    <ul id="main-menu">
-        <li class="home"><a href="index.html" class="transition">Home</a></li><img src="images/menu-sep.png">
-        <li class="about"><a href="about.html" class="transition">About us</a></li><img src="images/menu-sep.png">
-        <li class="services"><a href="services.html" class="transition">Services</a></li><img src="images/menu-sep.png">
-        <li class="news"><a href="news.html" class="transition">News &amp; Events</a></li><img src="images/menu-sep.png">
-        <li class="contact"><a href="contact.html" class="transition">Contact us</a></li>
-    </ul><!--main-menu-->
+    @include('layouts/dongho/topbar')<!--main-menu-->
     @include('layouts/dongho/slidemenu')
 </div><!--header-->
 <div id="breadcumbs" class="home">
     <ol class="breadcrumb container">
-      <li><a href="#">Home</a></li>
-      <li class="active">Contact us</li>
+        {{$page['brc']}}
     </ol>
 </div><!-- breadcumbs -->
 <div id="body-content">
@@ -98,7 +89,25 @@
 </div><!-- body-content -->
 <div id="bottom">
     <div class="container">
-    Follow us on : <a href="#"><i class="fa fa-facebook-square"></i></a><a href="#"><i class="fa fa-twitter-square"></i></a><a href="#"><i class="fa fa-google-plus-square"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a><a href="#"><i class="fa fa-pinterest-square"></i></a><a href="#"><i class="fa fa-youtube-square"></i></a>
+    Follow us on :
+    @if( CNF_fb != '')
+    <a href="{{CNF_fb}}"><i class="fa fa-facebook-square"></i></a>
+    @endif
+    @if(CNF_tw != '')
+    <a href="{{CNF_tw}}"><i class="fa fa-twitter-square"></i></a>
+    @endif
+    @if( CNF_gg != '')
+    <a href="{{CNF_gg}}"><i class="fa fa-google-plus-square"></i></a>
+    @endif
+    @if(CNF_in != '')
+    <a href="{{CNF_in}}"><i class="fa fa-linkedin-square"></i></a>
+    @endif
+    @if( CNF_pi != '')
+    <a href="{{CNF_pi}}"><i class="fa fa-pinterest-square"></i></a>
+    @endif
+    @if( CNF_yt != '')
+    <a href="{{CNF_yt}}"><i class="fa fa-youtube-square"></i></a>
+    @endif
     </div>
 </div><!-- bottom -->
 <div id="footer">
@@ -122,14 +131,8 @@
             <li><i class="fa fa-angle-right"></i><a href="#">Privacy</a></li>
             <li><i class="fa fa-angle-right"></i><a href="#">Terms of use</a></li>
         </ul><!--column-->
-        <ul class="column">
-            <h3>Contact Us</h3>
-            <li>(08) 62 947 669</li>
-            <li>118/116 Bach Dang Street, Ward 24,</li>
-            <li>Binh Thanh District, HoChiMinh City</li>
-            <li>info@goldenfolder.com</li>
-        </ul><!--column-->
-        <div class="column"><img src="images/logo-footer.png"></div>
+        {{CNF_FOOTER}}<!--column-->
+        <div class="column"><img src="{{ asset('sximo/themes/dongho/images/logo-footer.png')}}"></div>
     </div>
 </div><!-- footer -->
 

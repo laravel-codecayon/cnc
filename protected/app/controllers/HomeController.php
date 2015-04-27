@@ -1823,6 +1823,7 @@ class HomeController extends BaseController {
 		$item = $mdPage->find($id);
 		$data['page'] = $item;
 		$this->data['pageTitle'] = Lang::get('layout.home');
+		$this->data['brc'] = '<li><a href="'.URL::to("").'">'.Lang::get('layout.home').'</a></li>';
 		//$this->data['pageNote'] = 'Welcome To Our Site';
 		//$this->data['breadcrumb'] = 'inactive';			
 		$page = 'pages.'.$this->theme.'.index';

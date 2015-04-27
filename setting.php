@@ -2,11 +2,16 @@
 define('CNF_fb','https://www.facebook.com/DHxachtay');
 define('CNF_gg','https://plus.google.com/u/0/109551396952500356135/posts');
 define('CNF_tw','');
-define('CNF_FREE','0');
-define('CNF_PRICEPOST','10000');
-define('CNF_FOOTER','<p>-Trụ Sở Ch&iacute;nh: 235 Nguyễn Văn Cừ, Quận 1, TP HCM</p>
-<p>-Điện Thoại: 0906.38.75.39</p>
-<p>-Email: yenthao1111@gmail.com</p>');
+define('CNF_yt','');
+define('CNF_in','');
+define('CNF_pi','');
+define('CNF_FOOTER','<h3>Contact Us</h3>
+<ul class="column">
+<li>(08) 62 947 669</li>
+<li>118/116 Bach Dang Street, Ward 24,</li>
+<li>Binh Thanh District, HoChiMinh City</li>
+<li>info@goldenfolder.com</li>
+</ul>');
 define('CNF_APPNAME','donghomodel.com');
 define('CNF_APPDESC','Internal PHP Application');
 define('CNF_COMNAME','donghomodel.com');
@@ -14,11 +19,7 @@ define('CNF_EMAIL','blackorwhitemor@gmail.com');
 define('CNF_METAKEY','Dịch Vụ Uber, DichvuUber,UBer, dichung, dinhoxe,');
 define('CNF_METADESC','Taxi Tự Do Cho Mọi Nhà');
 define('CNF_PHONE','0906.38.75.39');
-define('CNF_ADDRESS','<ul class="address">
-<li><strong>Li&ecirc;n hệ:&nbsp;</strong>Mr.Th&aacute;i</li>
-<li><strong>Điện thoại:</strong> 01677929939</li>
-<li><strong>Email:</strong> <a title="" href="#">b</a>lackorwhitemor@gmail.com</li>
-</ul>');
+define('CNF_ADDRESS','');
 define('CNF_GROUP','3');
 define('CNF_ACTIVATION','manual');
 define('CNF_MULTILANG','0');

@@ -67,12 +67,6 @@
 	 </div> 
   </div>   
   <div class="form-group">
-    <label for="ipt" class=" control-label col-md-4">{{ Lang::get('core.address'); }} </label>
-	<div class="col-md-8">
-		<textarea class="form-control input-sm mceEditor" row='10' clos="10"  name="cnf_address">{{ CNF_ADDRESS }}</textarea>
-	 </div> 
-  </div>   
-  <div class="form-group">
     <label for="ipt" class=" control-label col-md-4">{{ Lang::get('core.phone'); }} </label>
 	<div class="col-md-8">
 	<input name="cnf_phone" type="text" id="cnf_phone" class="form-control input-sm" value="{{ CNF_PHONE }}" /> 
@@ -97,18 +91,21 @@
 	 </div> 
   </div>
   <div class="form-group">
-    <label for="ipt" class=" control-label col-md-4"> Formality Site <br /> </label>
+    <label for="ipt" class=" control-label col-md-4">Youtube </label>
 	<div class="col-md-8">
-		<select class="form-control" name="cnf_free">
-			<option @if(CNF_FREE == 0) selected @endif value="0">Free</option>
-			<option @if(CNF_FREE == 1) selected @endif value="1">charge</option>
-		</select>
+	<input name="cnf_yt" type="text" id="cnf_phone" class="form-control input-sm" value="{{ CNF_yt }}" /> 
 	 </div> 
   </div>
   <div class="form-group">
-    <label for="ipt" class=" control-label col-md-4">Price for a post </label>
+    <label for="ipt" class=" control-label col-md-4">Linkedin </label>
 	<div class="col-md-8">
-	<input name="cnf_pricepost" type="text" id="cnf_pricepost" class="form-control input-sm" value="{{ CNF_PRICEPOST }}" /> 
+	<input name="cnf_in" type="text" id="cnf_phone" class="form-control input-sm" value="{{ CNF_in }}" /> 
+	 </div> 
+  </div>
+  <div class="form-group">
+    <label for="ipt" class=" control-label col-md-4">Pinterest </label>
+	<div class="col-md-8">
+	<input name="cnf_pi" type="text" id="cnf_phone" class="form-control input-sm" value="{{ CNF_pi }}" /> 
 	 </div> 
   </div>
   <!--<div class="form-group">
