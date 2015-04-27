@@ -1817,16 +1817,16 @@ class HomeController extends BaseController {
 		if(CNF_FRONT =='false' && Session::get('uid') !=1) :
 			if(!Auth::check())  return Redirect::to('user/login');
 		endif; 
-		$data['items'] = DB::table('products')->where('lang','=',$this->lang)->where('status','=','1')->orderby('created','desc')->limit('20')->get();
-		$this->data['pageTitle'] = 'Home';
-		$this->data['pageNote'] = 'Welcome To Our Site';
+		$data = array();
+		$this->data['pageTitle'] = Lang::get('layout.home');
+		//$this->data['pageNote'] = 'Welcome To Our Site';
 		//$this->data['breadcrumb'] = 'inactive';			
 		$page = 'pages.'.$this->theme.'.home';
 		
 		$page = SiteHelpers::renderHtml($page);
 		
 
-		$this->layout->nest('content',$page,$data)->with('menu', 'index' );
+		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu', 'index' );
 			
 	}
 

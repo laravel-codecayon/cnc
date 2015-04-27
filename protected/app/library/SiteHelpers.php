@@ -104,7 +104,8 @@ class SiteHelpers
 	}
 	
 	public static function getSlide(){
-		return Slideshow::where('slideshow_status','=','1')->get();
+		$lang = Session::get('lang') == '' ? CNF_LANG : Session::get('lang');
+		return Slideshow::where('slideshow_status','=','1')->where('lang','=',$lang)->get();
 	}
 
 	public static function getProductHot(){
@@ -1293,11 +1294,15 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 			';			
 		} elseif ($task =='success') {
 			$alert ='
-			<div class="noti-done" ><div class="container"><i class="fa fa-check"></i>'. $message.' </div></div>
+			<div class="alert alert-success fade in block-inner">
+
+			<i class="icon-checkmark-circle"></i> '. $message.' </div>
 			';			
 		} elseif ($task =='warning') {
 			$alert ='
-			<div class="noti-info" ><div class="container"><i class="fa fa-check"></i>'. $message.' </div></div>
+			<div class="alert alert-warning fade in block-inner">
+
+			<i class="icon-warning"></i> '. $message.' </div>
 			';			
 		} else {
 			$alert ='

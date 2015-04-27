@@ -160,7 +160,7 @@ class SlideshowController extends BaseController {
 		$validator = Validator::make(Input::all(), $rules);	
 		if ($validator->passes()) {
 			$data = $this->getDataPost('slideshow');
-			if(!is_null(Input::file('file')))
+			/*if(!is_null(Input::file('file')))
 			{
 				$file = Input::file('file');
 				$destinationPath = './uploads/slideshow/';
@@ -180,7 +180,7 @@ class SlideshowController extends BaseController {
 				    	@unlink(ROOT .'/uploads/slideshow/thumb/'.$data_old->slideshow_image);
 				    }
 				}
-			}
+			}*/
 			$data['slideshow_alias'] =  SiteHelpers::seoUrl( trim($data['slideshow_name']));
 			$data['created'] = time();
 			$data['slideshow_link'] = $data['slideshow_link'] == '' ? '#' : $data['slideshow_link'];

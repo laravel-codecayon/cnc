@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'UTMNeoSansIntel';
+  src: url('UTMNeoSansIntel.eot');
+  src: url('UTMNeoSansIntel.eot?#iefix') format('embedded-opentype'),
+       url('UTMNeoSansIntel.woff2') format('woff2'),
+       url('UTMNeoSansIntel.woff') format('woff'),
+       url('UTMNeoSansIntel.ttf') format('truetype'),
+       url('UTMNeoSansIntel.svg#UTMNeoSansIntel') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'UTMNeoSansIntel';
+  src: url('UTMNeoSansIntelBold.eot');
+  src: url('UTMNeoSansIntelBold.eot?#iefix') format('embedded-opentype'),
+       url('UTMNeoSansIntelBold.woff2') format('woff2'),
+       url('UTMNeoSansIntelBold.woff') format('woff'),
+       url('UTMNeoSansIntelBold.ttf') format('truetype'),
+       url('UTMNeoSansIntelBold.svg#UTMNeoSansIntelBold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+

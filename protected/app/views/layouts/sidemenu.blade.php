@@ -72,26 +72,8 @@
 				@endif
 			</li>
 		@endforeach-->
-		<li @if(Request::is('nproducts')) class="active" @endif>
-			<a href="{{ URL::to('nproducts')}}"><i class="icon-drawer3"></i> <span class="nav-label">Sản phẩm</span><span class="fa arrow"></span></a>
-		</li>
-		<li @if(Request::is('ncategories')) class="active" @endif>
-			<a href="{{ URL::to('ncategories')}}"><i class="icon-drawer3"></i> <span class="nav-label">Danh mục sản phẩm</span><span class="fa arrow"></span></a>
-		</li>
-		<li @if(Request::is('producttype')) class="active" @endif>
-			<a href="{{ URL::to('producttype')}}"><i class="icon-drawer3"></i> <span class="nav-label">{{ Lang::get('core.type_product') }}</span><span class="fa arrow"></span></a>
-		</li>
-		<li @if(Request::is('promotion')) class="active" @endif>
-			<a href="{{ URL::to('promotion')}}"><i class="icon-drawer3"></i> <span class="nav-label">Khuyến mãi</span><span class="fa arrow"></span></a>
-		</li>
-		<li @if(Request::is('order')) class="active" @endif>
-			<a href="{{ URL::to('order')}}"><i class="icon-drawer3"></i> <span class="nav-label">Đơn hàng</span><span class="fa arrow"></span></a>
-		</li>
-		<li @if(Request::is('Tag')) class="active" @endif>
-			<a href="{{ URL::to('Tag')}}"><i class="icon-drawer3"></i> <span class="nav-label">Tags</span><span class="fa arrow"></span></a>
-		</li>
 		<li @if(Request::is('News')) class="active" @endif>
-			<a href="{{ URL::to('News')}}"><i class="icon-drawer3"></i> <span class="nav-label">Tin tức</span><span class="fa arrow"></span></a>
+			<a href="{{ URL::to('News')}}"><i class="icon-drawer3"></i> <span class="nav-label">{{ Lang::get('core.news') }}</span><span class="fa arrow"></span></a>
 		</li>
 		<li @if(Request::is('customer')) class="active" @endif>
 			<a href="{{ URL::to('customer')}}"><i class="icon-drawer3"></i> <span class="nav-label">Khách hàng</span><span class="fa arrow"></span></a>

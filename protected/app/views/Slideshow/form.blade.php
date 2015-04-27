@@ -1,6 +1,8 @@
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 {{ HTML::script('sximo/js/preview-image/modernizr.custom.js')}}
 {{ HTML::script('sximo/js/preview-image/script.js')}}
+{{ HTML::script('sximo/js/plugins/tinymce/jscripts/tiny_mce/jquery.tinymce.js')}}
+{{ HTML::script('sximo/js/plugins/tinymce/jscripts/tiny_mce/tiny_mce.js')}}
 <script id="imageTemplate" type="text/x-jquery-tmpl"> 
     <div class="imageholder">
 		<figure>
@@ -52,14 +54,9 @@
 									 </div>
 								  </div>
 								  <div class="form-group  " >
-									<label for="Picture" class=" control-label col-md-4 text-left"> {{ Lang::get('core.product_image') }} </label>
+									<label for="content" class=" control-label col-md-4 text-left"> {{ Lang::get('core.table_content') }} </label>
 									<div class="col-md-6">
-									  <input id="upload" name="file" type="file" />
-									  	<div id="result">
-											@if($row['slideshow_image'] != "")
-												<img width="400px" src="/uploads/slideshow/thumb/{{$row['slideshow_image']}}">
-											@endif
-										</div>
+									  <textarea name='content' rows='5' style="width:100%;" class='mceEditor form-control'  >{{ $row['content'] }}</textarea>
 									 </div> 
 									 <div class="col-md-2">
 									 </div>
@@ -108,6 +105,15 @@
 </div>			 
    <script type="text/javascript">
 	$(document).ready(function() { 
-		 
+		 $(function(){
+		tinymce.init({	
+			mode : "specific_textareas",
+			editor_selector : "mceEditor",
+			 plugins : "openmanager",
+			 file_browser_callback: "openmanager",
+			 theme_advanced_buttons3 : "forecolor , backcolor ,forecolorpicker, backcolorpicker , fontselect, fontsizeselect ",
+			 open_manager_upload_path: '../../../../../../../../uploads/images/',
+		 });
+	});
 	});
 	</script>		 
