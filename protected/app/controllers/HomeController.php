@@ -1818,10 +1818,14 @@ class HomeController extends BaseController {
 			if(!Auth::check())  return Redirect::to('user/login');
 		endif; 
 		$data = array();
+		$mdPage = new Pages();
+		$id = $this->lang == 'en' ? 1 : 2;
+		$item = $mdPage->find($id);
+		$data['page'] = $item;
 		$this->data['pageTitle'] = Lang::get('layout.home');
 		//$this->data['pageNote'] = 'Welcome To Our Site';
 		//$this->data['breadcrumb'] = 'inactive';			
-		$page = 'pages.'.$this->theme.'.home';
+		$page = 'pages.'.$this->theme.'.index';
 		
 		$page = SiteHelpers::renderHtml($page);
 		

@@ -134,7 +134,7 @@ class SiteHelpers
 
 	public static function getMenuNews(){
 		$lang = Session::get('lang') == '' ? CNF_LANG : Session::get('lang');
-		return News::where('news_status','=','1')->where('lang','=',$lang)->orderBy('created','desc')->limit(5)->get();
+		return News::where('news_status','=','1')->where('lang','=',$lang)->orderBy('created','desc')->limit(10)->get();
 	}
 
 	public static function getArrayTemplateEmail(){

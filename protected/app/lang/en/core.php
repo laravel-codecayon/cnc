@@ -254,4 +254,5 @@ return array(
 	"post_active"				=> "Kích hoạt ",
 	"config"					=> "Cài đặt ",
 	"no_image"					=> "Không có hình ",
+	"news"					=> "News",
 );
