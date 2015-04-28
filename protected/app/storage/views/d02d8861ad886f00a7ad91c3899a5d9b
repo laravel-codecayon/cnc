@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title><?php echo isset($page['pageTitle']) ? $page['pageTitle'] : CNF_APPNAME ;?></title>
+<meta name="keywords" content="<?php echo CNF_METAKEY; ?>">
+<meta name="description" content="<?php echo CNF_METADESC; ?>"/>
+<link rel="shortcut icon" href="<?php echo URL::to(''); ?>/logo.ico" type="image/x-icon">
+<meta property="og:title" content="<?php echo isset($page['pageTitle']) ? $page['pageTitle'] : CNF_APPNAME ;?>" />
+<meta property="og:url" content="<?php echo $page['detail_url']; ?>" />
+<meta property="og:description" content="<?php echo $page['description']; ?>" />
+<meta property="og:image" content="<?php echo $page['image']; ?>" />
+<meta property="og:width" content="<?php echo $page['width']; ?>" />
+<meta property="og:height" content="<?php echo $page['height']; ?>" />
+<?php echo HTML::style('sximo/themes/dongho/css/bootstrap.min.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/bootstrap-theme.min.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/font-awesome.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/slick.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/jquery.mCustomScrollbar.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/fonts/font.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/animate.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/style.css'); ?>
+
+<?php echo HTML::script('sximo/themes/dongho/js/jquery-2.1.1.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/slidereveal.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/jquery.mCustomScrollbar.concat.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/bootstrap.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/slick.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/viewportchecker.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/bootstrap.youtubepopup.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/layout.js'); ?>
+
+</head>
+
+<body>
+<div id="hide-menu" class="hide-menu"><!-- --></div>
+<div id="menu-slide" class="menu-slide" style="position: fixed; width: 250px; transition: all 600ms ease; -webkit-transition: all 600ms ease; height: 100%; top: 0px; right: -250px;">
+    <div><a href="<?php echo URL::to(''); ?>"><img src="<?php echo asset('sximo/themes/dongho/images/logo.png'); ?>"></a></div>
+    <?php echo $__env->make('layouts/dongho/rightbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?><!--main-menu-->
+</div>
+<!-- Modal -->
+<div class="modal fade" id="seach-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content clearfix">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <form method="get" action="<?php echo URL::to(''); ?>/home/search">
+            <input name="key" type="text" placeholder="Tìm kiếm" class="form-control search-input">
+            <button type="submit" class="btn btn-success search-submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+  </div>
+</div>
+<div id="header" <?php if($menu == 'index'): ?> class="home" <?php endif; ?>>
+    <div class="container animated fadein">
+        <div id="logo"><a href="<?php echo URL::to(''); ?>"><img src="<?php echo asset('sximo/themes/dongho/images/logo.png'); ?>"></a></div>
+        <div class="header-right">
+            <div class="language dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        <?php 
+                            $lang = Session::get('lang') == '' ? CNF_LANG : Session::get('lang');
+                            echo $lang == "vi" ? 'Vietnamese' : 'English';
+                            $lang_diff = $lang == "vi" ? 'en' : 'vi';
+                        ?>
+                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL::to('home/lang'); ?>/<?php echo $lang_diff; ?>"><?php echo $lang == "vi" ? 'English' : 'Vietnamese'; ?></a></li>
+                </ul>
+            </div>
+            <div class="consulting"><span>(08) 62 699 699</span><p>Free consulting</p></div>
+            <div class="navigator">        
+                <a href="<?php echo URL::to('contact-us.html'); ?>"><i class="fa fa-envelope"></i></a>
+                <a href="#" class="show-slide-menu"><i class="fa fa-navicon"></i></a>
+                <a href="#" data-toggle="modal" data-target="#seach-popup"><i class="fa fa-search"></i></a>
+            </div><!-- navigator -->
+        </div><!-- header-right -->
+    </div>
+    <?php echo $__env->make('layouts/dongho/topbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?><!--main-menu-->
+    <?php if($menu == 'index'): ?>
+    <?php echo $__env->make('layouts/dongho/slidemenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php endif; ?>
+</div><!--header-->
+<div id="breadcumbs" <?php if($menu == 'index'): ?> class="home" <?php endif; ?>>
+    <ol class="breadcrumb container">
+        <?php echo $page['brc']; ?>
+    </ol>
+</div><!-- breadcumbs -->
+<div id="body-content">
+
+    <?php echo $content; ?>
+        
+        <?php echo $__env->make('layouts/dongho/product_hot', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        
+        
+    </div><!-- home-page -->
+     
+
+</div><!-- body-content -->
+<div id="bottom">
+    <div class="container">
+    Follow us on :
+    <?php if( CNF_fb != ''): ?>
+    <a href="<?php echo CNF_fb; ?>"><i class="fa fa-facebook-square"></i></a>
+    <?php endif; ?>
+    <?php if(CNF_tw != ''): ?>
+    <a href="<?php echo CNF_tw; ?>"><i class="fa fa-twitter-square"></i></a>
+    <?php endif; ?>
+    <?php if( CNF_gg != ''): ?>
+    <a href="<?php echo CNF_gg; ?>"><i class="fa fa-google-plus-square"></i></a>
+    <?php endif; ?>
+    <?php if(CNF_in != ''): ?>
+    <a href="<?php echo CNF_in; ?>"><i class="fa fa-linkedin-square"></i></a>
+    <?php endif; ?>
+    <?php if( CNF_pi != ''): ?>
+    <a href="<?php echo CNF_pi; ?>"><i class="fa fa-pinterest-square"></i></a>
+    <?php endif; ?>
+    <?php if( CNF_yt != ''): ?>
+    <a href="<?php echo CNF_yt; ?>"><i class="fa fa-youtube-square"></i></a>
+    <?php endif; ?>
+    </div>
+</div><!-- bottom -->
+<div id="footer">
+    <div class="container">
+        <?php echo $__env->make('layouts/dongho/footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        
+        <?php echo $__env->make('layouts/dongho/footer1', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('layouts/dongho/footer2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo CNF_FOOTER; ?><!--column-->
+        <div class="column"><img src="<?php echo asset('sximo/themes/dongho/images/logo-footer.png'); ?>"></div>
+    </div>
+</div><!-- footer -->
+
+
+</body></html>

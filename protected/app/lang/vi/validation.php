@@ -85,6 +85,7 @@ return array(
 			'username' => 'Tên đăng nhập',
 			'name' => 'Tên',
 			'email' => 'Email',
+			'comment' => 'Nội dung',
 			'phone' => 'Số điện thoại',
 			'address' => 'Địa chỉ',
 			'password' => 'Mật khẩu',

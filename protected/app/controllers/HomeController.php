@@ -29,6 +29,13 @@ class HomeController extends BaseController {
 		}
 		$this->display = Session::get('display') == '' ? "gird" : Session::get('display');
 
+		$host = $_SERVER['HTTP_HOST'];
+		$url = $_SERVER['REQUEST_URI'];
+		$this->data['detail_url'] = $host . $url;
+		$this->data['description'] = CNF_METADESC;
+		$this->data['image'] = ROOT .'/sximo/themes/dongho/images/logo-footer.png';
+		$this->data['width'] = "200";
+		$this->data['height'] = "125";
 	}
 
 	public function postTest(){
@@ -41,130 +48,6 @@ class HomeController extends BaseController {
 				die;
 	}
 
-	public function tintuc(){
-		$sort = 'created';
-		$order = 'desc';
-		$filter = " AND news_status = 1 ";
-
-		$page = (!is_null(Input::get('page')) && Input::get('page') != '') ? Input::get('page') : "1";
-		$params = array(
-			'page'		=> $page ,
-			'limit'		=> ( $this->perpage ) ,
-			'sort'		=> $sort ,
-			'order'		=> $order,
-			'params'	=> $filter,
-			//'global'	=> (isset($this->access['is_global']) ? $this->access['is_global'] : 0 )
-		);
-		$model = new News();
-		$results = $model->getRows( $params );
-		// Build pagination setting
-		$page = $page >= 1 && filter_var($page, FILTER_VALIDATE_INT) !== false ? $page : 1;	
-		$pagination = Paginator::make($results['rows'], $results['total'],$params['limit']);
-		//$data['order'] 		= $data_order;
-		//$data['province']	= $data_province;
-		$data['data']		= $results['rows'];
-		$data['page']		= $page;
-		$data['numpage']	= $params['limit'];
-		// Build Pagination 
-		$data['pagination']	= $pagination;
-		// Build pager number and append current param GET
-		$data['pager'] 		= $this->injectPaginate();
-
-
-		$this->data['pageTitle'] = "Danh sách tin tức đồng hồ";
-		$this->data['pageNote'] = CNF_APPNAME;
-		$page = 'pages.template.tintuc';
-		$page = SiteHelpers::renderHtml($page);
-		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','tintuc');
-	}
-
-	public function detailtintuc($alias = '', $id = ''){
-		$new = DB::table('news')->where('news_id','=',$id)->where('news_status','=','1')->first();
-		if(count($new) == 0){
-			return Redirect::to('');
-		}
-		$news = DB::table('news')->where('news_id','!=',$id)->where('news_status','=','1')->orderby('created','DESC')->limit(5)->get();
-		$data['new'] = $new;
-		$data['news'] = $news;
-		$this->data['pageTitle'] = $new->news_name;
-		$this->data['pageNote'] = CNF_APPNAME;
-		$page = 'pages.template.detailnews';
-		$page = SiteHelpers::renderHtml($page);
-		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','detailnews');
-	}
-
-	public function contactus(){
-		$input = array(
-				"name"=>'',
-				"phone"=>'',
-				"email"=>'',
-				"address"=>'',
-				"content"=>'',
-				"subject"=>''
-			);
-		if(Session::has('input_rd')){
-			$input = Session::get('input_rd');
-		}
-		$data['input'] = $input;
-
-
-		$page = 'pages.template.contactus';
-
-		$this->data['pageTitle'] = 'Liên hệ';
-		$this->data['pageNote'] = CNF_APPNAME;
-		$page = SiteHelpers::renderHtml($page);
-		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','contactus');
-	}
-
-	public function  postContactform()
-	{
-	
-		$this->beforeFilter('csrf', array('on'=>'post'));
-		$rules = array(
-				'name'		=>'required',
-				'email'	=>'required|email',
-				'phone'	=>'required|Numeric',
-				'content'	=>'required',
-				'subject'	=>'required',
-		);
-		if(CNF_RECAPTCHA =='true') $rules['recaptcha_response_field'] = 'required|recaptcha';
-		$validator = Validator::make(Input::all(), $rules);	
-		if ($validator->passes()) 
-		{
-			
-			$data = array('name'=>Input::get('name'),'phone'=>Input::get('phone'),'email'=>Input::get('email'),'content'=>Input::get('content'),'subject'=>Input::get('subject')); 
-			
-			Mail::send('emails.contact', $data, function($message)
-			{
-				$message->from( Input::get('email'), Input::get('name') );
-			    $message->to(CNF_EMAIL, 'Admin')->subject(Input::get('subject'));
-			});
-			return Redirect::to(URL::to(''))->with('message', SiteHelpers::alert('success','Yêu cầu của bạn đã được gởi ! Chúng tôi sẻ liên hệ với bạn trong thời gian sơm nhất'));	
-				
-		} else {
-			return Redirect::to(URL::to('')."/lien-he.html")->with('message_contact', SiteHelpers::alert('error','Vui lòng khắc phục các lỗi bên dưới'))->with('input_rd',Input::all())
-			->withErrors($validator)->withInput();
-		}		
-	}
-
-	public function page($id){
-		$mdPage = new Pages();
-		$item = $mdPage->find($id);
-		if(count($item) <= 0){
-			return Redirect::to(URL::to(''))->with('message', SiteHelpers::alert('warning','Trang bạn yêu cầu không tồn tại !'));	
-		}
-
-		$data['page'] = $item;
-		$this->data['pageTitle'] = $item->title;
-		$this->data['pageNote'] = CNF_APPNAME;
-
-		//$this->data['breadcrumb'] = 'inactive';
-		$page = 'pages.template.index';
-
-
-		$page = SiteHelpers::renderHtml($page);
-		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','page');
-	}
 
 	public function pdf(){
 		$parameterr = array();
@@ -1690,10 +1573,11 @@ class HomeController extends BaseController {
 		}
 	}*/
 
-	public function search(){
+	public function getSearch(){
 		if(Input::get('key') == ''){
 			return Redirect::to('');
 		}
+		$this->data['brc'] = '<li><a href="'.URL::to("").'">'.Lang::get('layout.home').'</a></li><li class="active">'.Lang::get('layout.search').'</li>';
 		$s = Input::get('key');
 		$sortget = ( Input::get('sort') != '') ? Input::get('sort') : 'ProductID-desc';
 		list($sort,$order) = explode('-', $sortget);
@@ -1829,10 +1713,186 @@ class HomeController extends BaseController {
 		$page = 'pages.'.$this->theme.'.index';
 		
 		$page = SiteHelpers::renderHtml($page);
-		
 
 		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu', 'index' );
 			
+	}
+
+	public function page($id){
+		$mdPage = new Pages();
+		//$item = $mdPage->find($id);
+		$item = DB::table('tb_pages')->where('pageID','=',$id)->where('status','=',1)->where('lang','=',$this->lang)->first();
+		if(count($item) <= 0){
+			return Redirect::to(URL::to(''))->with('message', SiteHelpers::alert('warning','Trang bạn yêu cầu không tồn tại !'));	
+		}
+		$this->data['brc'] = '<li><a href="'.URL::to("").'">'.Lang::get('layout.home').'</a></li><li class="active">'.$item->title.'</li>';
+		$data['page'] = $item;
+		$this->data['pageTitle'] = $item->title;
+		$this->data['pageNote'] = CNF_APPNAME;
+
+		//$this->data['breadcrumb'] = 'inactive';
+		$page = 'pages.'.$this->theme.'.index';
+
+
+		$page = SiteHelpers::renderHtml($page);
+		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','page');
+	}
+
+	public function contactus(){
+		$input = array(
+				"name"=>'',
+				"email"=>'',
+				"comment"=>'',
+				"website"=>''
+			);
+		if(Session::has('input_rd')){
+			$input = Session::get('input_rd');
+		}
+		$data['input'] = $input;
+
+
+		$page = 'pages.'.$this->theme.'.contactus';
+		$this->data['brc'] = '<li><a href="'.URL::to("").'">'.Lang::get('layout.home').'</a></li><li class="active">'.Lang::get('layout.contact').'</li>';
+		$this->data['pageTitle'] = Lang::get('layout.contact');
+		//$this->data['pageNote'] = CNF_APPNAME;
+		$page = SiteHelpers::renderHtml($page);
+		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','contactus');
+	}
+
+	public function  postContactform()
+	{
+	
+		$this->beforeFilter('csrf', array('on'=>'post'));
+		$rules = array(
+				'name'		=>'required',
+				'email'	=>'required|email',
+				'comment'	=>'required',
+		);
+		//if(CNF_RECAPTCHA =='true') $rules['recaptcha_response_field'] = 'required|recaptcha';
+		$validator = Validator::make(Input::all(), $rules);	
+		if ($validator->passes()) 
+		{
+			
+			$data = array('name'=>Input::get('name'),'comment'=>Input::get('comment'),'email'=>Input::get('email'),'website'=>Input::get('website')); 
+			
+			Mail::send('emails.contact', $data, function($message)
+			{
+				$message->from( Input::get('email'), Input::get('name') );
+			    $message->to(CNF_EMAIL, 'Admin')->subject(Lang::get('layout.contact_info'));
+			});
+			return Redirect::to(URL::to(''))->with('message', SiteHelpers::alert('success',Lang::get('layout.success_submit_form_contact')));	
+				
+		} else {
+			return Redirect::to(URL::to('')."/contact-us.html")->with('message_contact', SiteHelpers::alert('error',Lang::get('layout.notice_error_submit_form_contact')))->with('input_rd',Input::all())
+			->withErrors($validator)->withInput();
+		}		
+	}
+
+	public function service(){
+		$services = DB::table('service')->where('status','=','1')->where('lang','=',$this->lang)->orderby('created','DESC')->limit(6)->get();
+		$data['services'] = $services;
+		$page = 'pages.'.$this->theme.'.service';
+		$this->data['brc'] = '<li><a href="'.URL::to("").'">'.Lang::get('layout.home').'</a></li><li class="active">'.Lang::get('layout.service').'</li>';
+		$this->data['pageTitle'] = Lang::get('layout.service');
+		//$this->data['pageNote'] = CNF_APPNAME;
+		$page = SiteHelpers::renderHtml($page);
+		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','contactus');
+	}
+
+	public function postMoreservice(){
+		$num = Input::get('num');
+		$services = DB::table('service')->where('status','=','1')->where('lang','=',$this->lang)->orderby('created','DESC')->take(6)->skip($num)->get();
+		$output = '';
+		foreach($services as $item){
+			$output .= SiteHelpers::templateService($item);
+			$num ++;
+		}
+		echo $output != '' ? $output."&&&&&".$num : '';die;
+	}
+
+	public function tintuc(){
+		$data = array();
+		$this->data['brc'] = '<li><a href="'.URL::to("").'">'.Lang::get('layout.home').'</a></li><li class="active">'.Lang::get('layout.news').'</li>';
+
+		$news1 = DB::table('news')->where('cat_id','=','1')->where('news_status','=','1')->where('lang','=',$this->lang)->orderby('created','DESC')->get();
+		$num1 = 1;
+		$output1 = '';
+		foreach($news1 as $item1){
+			$type = ($num1 == 1 || $num1 ==2 || ($num1 -1) % 8 == 0 || ($num1 -2) % 8 == 0) ? 'big' : 'small';
+			if($num1 == 1){
+				$output1 .= '<div class="list">';
+			}
+			$output1 .= SiteHelpers::templateNews($item1,$type);
+			if($num1 % 8 == 0){
+				$output1 .= '</div><div class="list">';
+			}
+			$num1 ++;
+		}
+		$output1 = $output1."</div>";
+		$data['news1'] = str_replace('<div class="list"></div>', '', $output1);
+
+		$news2 = DB::table('news')->where('cat_id','=','2')->where('news_status','=','1')->where('lang','=',$this->lang)->orderby('created','DESC')->get();
+		$num2 = 1;
+		$output2 = '';
+		foreach($news2 as $item2){
+			$type = ($num2 == 1 || ($num2 - 1) % 4 == 0) ? 'big' : 'small';
+			if($num2 == 1){
+				$output2 .= '<div class="list">';
+			}
+			$output2 .= SiteHelpers::templateNews($item2,$type);
+			if($num2 % 4 == 0){
+				$output2 .= '</div><div class="list">';
+			}
+			$num2 ++;
+		}
+		$output2 = $output2."</div>";
+		$data['news2'] = str_replace('<div class="list"></div>', '', $output2);
+
+		$news3 = DB::table('news')->where('cat_id','=','3')->where('news_status','=','1')->where('lang','=',$this->lang)->orderby('created','DESC')->get();
+		$num3 = 1;
+		$output3 = '';
+		foreach($news3 as $item3){
+			if($num3 == 1){
+				$output3 .= '<div class="list">';
+			}
+			$output3 .= SiteHelpers::templateNews($item3,'other');
+			if($num3 % 6 == 0){
+				$output3 .= '</div><div class="list">';
+			}
+			$num3 ++;
+		}
+		$output3 = $output3."</div>";
+		$data['news3'] = str_replace('<div class="list"></div>', '', $output3);
+
+		$this->data['pageTitle'] = Lang::get('layout.news');;
+		//$this->data['pageNote'] = CNF_APPNAME;
+		$page = 'pages.'.$this->theme.'.tintuc';
+		$page = SiteHelpers::renderHtml($page);
+		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','tintuc');
+	}
+
+	public function detailtintuc($alias = '', $id = ''){
+		$new = DB::table('news')->where('news_id','=',$id)->where('news_status','=','1')->where('lang','=',$this->lang)->first();
+		if(count($new) == 0){
+			return Redirect::to('');
+		}
+		$this->layout = View::make("layouts.".CNF_THEME.".detailnew");
+		$this->data['brc'] = '<li><a href="'.URL::to("").'">'.Lang::get('layout.home').'</a></li><li><a href="'.URL::to("news.html").'">'.Lang::get('layout.news').'</a></li><li class="active">'.$new->news_name.'</li>';
+		$data['new'] = $new;
+		$pre = DB::table('news')->where('news_id','<',$id)->where('news_status','=','1')->where('lang','=',$this->lang)->orderby('news_id','DESC')->first();
+		$this->data['pre'] = $pre != '' ? URL::to('')."/news/".$pre->news_alias."-".$pre->news_id.".html" : '';
+		$next = DB::table('news')->where('news_id','>',$id)->where('news_status','=','1')->where('lang','=',$this->lang)->orderby('news_id','ASC')->first();
+		$this->data['next'] = $next != '' ? URL::to('')."/news/".$next->news_alias."-".$next->news_id.".html" : "";
+		$this->data['pageTitle'] = $new->news_name;
+		//$this->data['pageNote'] = CNF_APPNAME;
+		$this->data['description'] = $new->news_description;
+		$this->data['image'] = URL::to('')."/uploads/news/".$new->news_picture;
+		list($width, $height) = getimagesize(ROOT."/uploads/news/".$new->news_picture);
+		$this->data['width'] = $width;
+		$this->data['height'] = $height;
+		$page = 'pages.'.$this->theme.'.detailnews';
+		$page = SiteHelpers::renderHtml($page);
+		$this->layout->nest('content',$page,$data)->with('page', $this->data)->with('menu','detailnews');
 	}
 
 	/*public function getAddtocart(){

@@ -53,6 +53,9 @@ jQuery(document).ready(function() {
 	   });
 
 	$('.slider-customer').slick();
+	$('.news-2column .row').slick();
+	$('.news-1column .wrapper').slick();
+	$('.news-3column .row').slick();
 
 					   
 });

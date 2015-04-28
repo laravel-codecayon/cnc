@@ -1,0 +1,17 @@
+<?php /**/ $menus = SiteHelpers::menus('top') /**/ ?>
+    <ul id="main-menu">
+        <?php foreach ($menus as $menu): ?>
+            <li>
+                <a class="transition"
+                <?php if($menu['menu_type'] =='external'): ?>
+                    href="<?php echo URL::to($menu['url'].$menu['module']); ?>" 
+                <?php else: ?>
+                    href="<?php echo URL::to($menu['module']); ?>" 
+                <?php endif; ?>
+                >
+                <?php echo $menu['menu_name']; ?>
+                </a>
+            </li>
+            <img src="<?php echo asset('sximo/themes/dongho/images/menu-sep.png'); ?>">
+        <?php endforeach; ?>
+    </ul><!--main-menu-->

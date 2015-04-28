@@ -30,6 +30,7 @@ class News extends BaseModel  {
 
 	public static $columnTable=array(
 			"news_name" => array("label"=>"Name", "type"=>"text", "name"=>"news_name", "value" => ""),
+			"cat_id" => array("label"=>"Type", "type"=>"radio", "name"=>"cat_id", "value" => "","option"=>array("0"=>"","1"=>"Company News","2"=>"Recruitment","3"=>"Publication")),
 			"news_status" => array("label"=>"Status", "type"=>"radio", "name"=>"news_status", "value" => "","option"=>array("0"=>"Disable","1"=>"Enable")),
 			//"CategoryID" => array("label"=>"Category", "type"=>"select", "name"=>"CategoryID", "value" => "", "model"=>"categories", "id"=>"CategoryID", "show" =>"CategoryName"),
 			"created" => array("label"=>"Created", "type"=>"date", "name"=>"created", "value" => ""),

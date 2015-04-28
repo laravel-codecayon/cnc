@@ -15,6 +15,8 @@
 	<ul class="nav nav-tabs" style="margin:10px 0;">
 		<li @if($active == 'top') class="active" @endif ><a href="{{ URL::to('menu?pos=top')}}"><i class="icon-paragraph-justify2"></i> {{ Lang::get('core.tab_topmenu') }} </a></li>
 		<li @if($active == 'footer') class="active" @endif ><a href="{{ URL::to('menu?pos=footer')}}"><i class="icon-paragraph-justify2"></i> Footer </a></li>
+		<li @if($active == 'footer1') class="active" @endif ><a href="{{ URL::to('menu?pos=footer1')}}"><i class="icon-paragraph-justify2"></i> Footer1 </a></li>
+		<li @if($active == 'footer2') class="active" @endif ><a href="{{ URL::to('menu?pos=footer2')}}"><i class="icon-paragraph-justify2"></i> Footer2 </a></li>
 		<!--<li @if($active == 'sidebar') class="active" @endif><a href="{{ URL::to('menu?pos=sidebar')}}"><i class="icon-paragraph-justify2"></i> {{ Lang::get('core.tab_sidemenu') }}</a></li>	-->
 	</ul>  	
 	
@@ -116,6 +118,8 @@
 							class='select-liquid '    >
 							<option @if($pos == 'top') selected="" @endif value="top"> Top </option>
 							<option @if($pos == 'footer') selected="" @endif  value="footer"> Footer </option>
+							<option @if($pos == 'footer1') selected="" @endif  value="footer1"> Footer1 </option>
+							<option @if($pos == 'footer2') selected="" @endif  value="footer2"> Footer2 </option>
 						</select>
 					 </div> 
 				  </div>

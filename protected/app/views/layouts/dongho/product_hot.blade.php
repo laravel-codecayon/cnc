@@ -15,9 +15,9 @@
             	?>
 							<div class="featured-news">
 			                    <div class="item">
-			                        <div class="image"><a href="{{URL::to('')}}/tin-tuc/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}"><img alt="{{$item->news_name}}" src="{{URL::to('')}}/uploads/news/thumb/{{$item->news_picture}}"></a></div>
+			                        <div class="image"><a href="{{URL::to('')}}/news/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}"><img alt="{{$item->news_name}}" src="{{URL::to('')}}/uploads/news/thumb/{{$item->news_picture}}"></a></div>
 			                        <div class="meta"><span class="date">{{date('d/m/Y',$item->created)}}</span><span class="comment">50 Comment (s) </span></div>
-			                        <h3 class="title"><a href="#">{{$item->news_name}}</a></h3>
+			                        <h3 class="title"><a href="{{URL::to('')}}/news/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}">{{$item->news_name}}</a></h3>
 			                        <p class="content">{{$item->news_description}}</p>
 			                    </div><!--item-->
 			                </div>
@@ -29,8 +29,8 @@
             	?>
 								<div class="item">
 			                        <div class="meta"><span class="date">{{date('d/m/Y',$item->created)}}</span><span class="comment">50 Comment (s) </span></div>
-			                        <div class="image"><a href="{{URL::to('')}}/tin-tuc/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}"><img alt="{{$item->news_name}}" src="{{URL::to('')}}/uploads/news/thumb/small_{{$item->news_picture}}"></a></div>
-			                        <h3 class="title"><a href="{{URL::to('')}}/tin-tuc/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}">{{$item->news_name}}</a></h3>
+			                        <div class="image"><a href="{{URL::to('')}}/news/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}"><img alt="{{$item->news_name}}" src="{{URL::to('')}}/uploads/news/thumb/small_{{$item->news_picture}}"></a></div>
+			                        <h3 class="title"><a href="{{URL::to('')}}/news/{{$item->news_alias}}-{{$item->news_id}}.html" title="{{$item->news_name}}">{{$item->news_name}}</a></h3>
 			                        <p class="content">{{$item->news_description}}</p>
 			                    </div>
             	<?php

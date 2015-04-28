@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title><?php echo isset($page['pageTitle']) ? $page['pageTitle'] : CNF_APPNAME ;?></title>
+<meta name="keywords" content="<?php echo CNF_METAKEY; ?>">
+<meta name="description" content="<?php echo CNF_METADESC; ?>"/>
+<link rel="shortcut icon" href="<?php echo URL::to(''); ?>/logo.ico" type="image/x-icon">
+<meta property="og:title" content="<?php echo isset($page['pageTitle']) ? $page['pageTitle'] : CNF_APPNAME ;?>" />
+<meta property="og:url" content="<?php echo $page['detail_url']; ?>" />
+<meta property="og:description" content="<?php echo $page['description']; ?>" />
+<meta property="og:image" content="<?php echo $page['image']; ?>" />
+<meta property="og:width" content="<?php echo $page['width']; ?>" />
+<meta property="og:height" content="<?php echo $page['height']; ?>" />
+<?php echo HTML::style('sximo/themes/dongho/css/bootstrap.min.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/bootstrap-theme.min.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/font-awesome.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/slick.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/jquery.mCustomScrollbar.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/fonts/font.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/animate.css'); ?>
+<?php echo HTML::style('sximo/themes/dongho/css/style.css'); ?>
+
+<?php echo HTML::script('sximo/themes/dongho/js/jquery-2.1.1.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/slidereveal.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/jquery.mCustomScrollbar.concat.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/bootstrap.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/slick.min.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/viewportchecker.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/bootstrap.youtubepopup.js'); ?>
+<?php echo HTML::script('sximo/themes/dongho/js/layout.js'); ?>
+<script>
+$(document).ready(function() {
+	
+	//$("body").css("display", "none");
+	$("body").addClass('animated');
+    $("body").addClass('fadeInRight');
+		
+});
+</script>
+</head>
+
+<body>
+<div id="hide-menu" class="hide-menu"><!-- --></div>
+<div id="menu-slide" class="menu-slide">
+	<div><a href="#"><img src="images/logo.png"></a></div>
+	<ul>
+    	<li class="home"><a href="#">Home</a></li>
+        <li class="about"><a href="#">About us</a></li>
+        <li class="services"><a href="#">Services</a></li>
+        <li class="news"><a href="#">News & Events</a></li>
+        <li class="contact"><a href="#">Contact us</a></li>
+    </ul><!--main-menu-->
+</div>
+<!-- Modal -->
+<div class="modal fade" id="seach-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content clearfix">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<form>
+            <input type="text" placeholder="Tìm kiếm" class="form-control search-input">
+            <button type="submit" class="btn btn-success search-submit"><i class="fa fa-search"></i></button>
+      	</form>
+  	</div>
+  </div>
+</div>
+<div id="header" class="detail-page">
+	<div class="container">
+        <div id="logo"><a href="<?php echo URL::to(''); ?>"><img src="<?php echo asset('sximo/themes/dongho/images/logo-footer.png'); ?>"></a></div>
+    </div>    
+</div><!--header-->
+<div id="body-content" class="container detail-page">
+     <div class="navigator-detail-page clearfix">
+     	<a href="<?php echo URL::to('news.html'); ?>" class="close-button"></a>
+     	<?php if($page['pre'] != ''): ?>
+        <a href="<?php echo $page['pre']; ?>" class="prev-button"><i class="fa fa-angle-left"></i></a>
+        <?php endif; ?>
+        <?php if($page['next'] != ''): ?>
+        <a href="<?php echo $page['next']; ?>" class="next-button"><i class="fa fa-angle-right"></i></a>
+        <?php endif; ?>
+     </div>
+     <div class="single-post">
+     	<?php echo $content; ?>
+     </div><!-- content -->
+    
+</div><!-- body-content -->
+</body>
+</html>

@@ -68,6 +68,19 @@
 									 </div>
 								  </div>
 								  <div class="form-group  " >
+									<label for="CategoryID" class=" control-label col-md-4 text-left"> {{ Lang::get('core.table_category') }} </label>
+									<div class="col-md-6">
+									  <select name='cat_id' rows='5'  class='select2'>
+									  	<option value="1" @if($row['cat_id'] == 1) selected="" @endif>Company News</option>
+									  	<option value="2" @if($row['cat_id'] == 2) selected="" @endif>Recruitment</option>
+									  	<option value="3" @if($row['cat_id'] == 3) selected="" @endif>Publication</option>
+									  </select> 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+									</div>
+								  <div class="form-group  " >
 									<label for="News Description" class=" control-label col-md-4 text-left"> Description </label>
 									<div class="col-md-6">
 									  <textarea name='news_description' rows='2' id='news_description' class='form-control '  

@@ -173,19 +173,27 @@ class NewsController extends BaseController {
 				    $orgFile = $destinationPath.'/'.$newfilename;
 				    $thumbFile = $destinationPath.'/thumb/'.$newfilename;
 				    //SiteHelpers::resizewidth("213",$orgFile,$thumbFile);
-				    SiteHelpers::cropImage('510' , '479' , $orgFile ,  $extension,	 $thumbFile);
+				    SiteHelpers::cropImage('516' , '485' , $orgFile ,  $extension,	 $thumbFile);
 				    $thumbFile1 = $destinationPath.'/thumb/small_'.$newfilename;
 				    //SiteHelpers::resizewidth("213",$orgFile,$thumbFile);
 				    SiteHelpers::cropImage('199' , '134' , $orgFile ,  $extension,	 $thumbFile1);
+				    $thumbFile2 = $destinationPath.'/thumb/360_'.$newfilename;
+				    SiteHelpers::cropImage('360' , '184' , $orgFile ,  $extension,	 $thumbFile2);
+				    $thumbFile3 = $destinationPath.'/thumb/262_'.$newfilename;
+				    SiteHelpers::cropImage('262' , '175' , $orgFile ,  $extension,	 $thumbFile3);
+				    $thumbFile4 = $destinationPath.'/thumb/68_'.$newfilename;
+				    SiteHelpers::cropImage('68' , '68' , $orgFile ,  $extension,	 $thumbFile4);
 				    if(Input::get('news_id') != "")
 				    {
 				    	$data_old = $this->model->getRow(Input::get('news_id'));
 				    	@unlink(ROOT .'/uploads/news/'.$data_old->news_picture);
 				    	@unlink(ROOT .'/uploads/news/thumb/'.$data_old->news_picture);
-				    	if(is_file(ROOT .'/uploads/news/small_'.$data_old->news_picture) && is_file(ROOT .'/uploads/news/thumb/small_'.$data_old->news_picture)){
-				    		@unlink(ROOT .'/uploads/news/small_'.$data_old->news_picture);
-				    		@unlink(ROOT .'/uploads/news/thumb/small_'.$data_old->news_picture);
-				    	}
+			    		@unlink(ROOT .'/uploads/news/small_'.$data_old->news_picture);
+			    		@unlink(ROOT .'/uploads/news/thumb/small_'.$data_old->news_picture);
+			    		@unlink(ROOT .'/uploads/news/thumb/360_'.$data_old->news_picture);
+			    		@unlink(ROOT .'/uploads/news/thumb/262_'.$data_old->news_picture);
+			    		@unlink(ROOT .'/uploads/news/thumb/68_'.$data_old->news_picture);
+
 				    }
 				}
 			}
@@ -225,6 +233,9 @@ class NewsController extends BaseController {
 			if(is_file(ROOT .'/uploads/news/small_'.$data->news_picture) && is_file(ROOT .'/uploads/news/thumb/small_'.$data->news_picture)){
 				@unlink(ROOT .'/uploads/news/small_'.$data->news_picture);
 				@unlink(ROOT .'/uploads/news/thumb/small_'.$data->news_picture);
+				@unlink(ROOT .'/uploads/news/thumb/360_'.$data->news_picture);
+				@unlink(ROOT .'/uploads/news/thumb/262_'.$data->news_picture);
+				@unlink(ROOT .'/uploads/news/thumb/68_'.$data->news_picture);
 			}
 		}
 		$this->model->destroy(Input::get('id'));

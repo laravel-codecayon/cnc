@@ -134,7 +134,7 @@ class SiteHelpers
 
 	public static function getMenuNews(){
 		$lang = Session::get('lang') == '' ? CNF_LANG : Session::get('lang');
-		return News::where('news_status','=','1')->where('lang','=',$lang)->orderBy('created','desc')->limit(10)->get();
+		return News::where('news_status','=','1')->where('lang','=',$lang)->orderBy('news_id','desc')->limit(10)->get();
 	}
 
 	public static function getArrayTemplateEmail(){
@@ -212,6 +212,47 @@ class SiteHelpers
 
 	public static function getSex($sex = ''){
 		return $sex == 1 ? "Nam" : "Nu";
+	}
+
+	public static function templateService($item){
+		$output = '<div class="col-md-4">
+                        <div class="service">
+                            <div class="icon"><img src="'.URL::to('').'/uploads/service/icon/'.$item->service_icon.'"></div>
+                            <h3>'.$item->service_name.'</h3>
+                            <p>'.$item->service_description.'</p>
+                            <div class="image"><img src="'.URL::to('').'/uploads/service/thumb/'.$item->service_image.'"></div>
+                        </div><!-- service -->
+                    </div>';
+        return $output;
+	}
+
+	public static function templateNews($item,$type = "big"){
+		$link = URL::to('').'/news/'.$item->news_alias.'-'.$item->news_id.'.html';
+		$image_big = URL::to('').'/uploads/news/thumb/360_'.$item->news_picture;
+		$image_small = URL::to('').'/uploads/news/thumb/68_'.$item->news_picture;
+		$image_other = URL::to('').'/uploads/news/thumb/262_'.$item->news_picture;
+		if($type == 'big'){
+			$output = '<div class="item big">
+                            <div class="image"><a href="'.$link.'"><img src="'.$image_big.'"></a></div>
+                            <div class="meta"><span class="date">'.date('d/m/Y',$item->created).'</span><span class="comment">50 Comment (s) </span></div>
+                            <h3 class="title"><a href="'.$link.'">'.$item->news_name.'</a></h3>
+                            <p class="content">'.$item->news_description.'</p>
+                        </div>';
+		}elseif($type == 'small'){
+			$output = '<div class="item">
+                            <div class="image"><a href="'.$link.'"><img src="'.$image_small.'"></a></div>
+                            <h3 class="title"><a href="'.$link.'">'.$item->news_name.'</a></h3>
+                            <div class="meta"><span class="date">'.date('d/m/Y',$item->created).'</span><span class="comment">50 Comment (s) </span></div>
+                        </div>';
+		}else{
+			$output = '<div class="item big">
+                            <div class="image"><a href="'.$link.'"><img src="'.$image_other.'"></a></div>
+                            <div class="meta"><span class="date">'.date('d/m/Y',$item->created).'</span><span class="comment">50 Comment (s) </span></div>
+                            <h3 class="title"><a href="'.$link.'">'.$item->news_name.'</a></h3>
+                            <p class="content">'.$item->news_description.'</p>
+                        </div>';
+		}
+        return $output;
 	}
 
 	public static function templateProduct($data = "",$type = "gird")

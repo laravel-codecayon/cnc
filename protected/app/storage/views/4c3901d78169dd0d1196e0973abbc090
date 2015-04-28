@@ -1,0 +1,46 @@
+<?php if(isset($menu) && $menu == "index"): ?>
+<?php /**/ $news = SiteHelpers::getMenuNews(); /**/ ?>
+<?php if($news != ''): ?>
+<div id="news">
+            <div class="block">
+            <div class="top container move">
+                <img src="images/home-icon4.png">
+                <h2><?php echo Lang::get('layout.some_new_from_us'); ?></h2>
+            </div>
+            <div class="news-content container move">
+            	<?php
+            		$i = 1;
+            		foreach($news as $item){
+            			if($i == 1){
+            	?>
+							<div class="featured-news">
+			                    <div class="item">
+			                        <div class="image"><a href="<?php echo URL::to(''); ?>/news/<?php echo $item->news_alias; ?>-<?php echo $item->news_id; ?>.html" title="<?php echo $item->news_name; ?>"><img alt="<?php echo $item->news_name; ?>" src="<?php echo URL::to(''); ?>/uploads/news/thumb/<?php echo $item->news_picture; ?>"></a></div>
+			                        <div class="meta"><span class="date"><?php echo date('d/m/Y',$item->created); ?></span><span class="comment">50 Comment (s) </span></div>
+			                        <h3 class="title"><a href="<?php echo URL::to(''); ?>/news/<?php echo $item->news_alias; ?>-<?php echo $item->news_id; ?>.html" title="<?php echo $item->news_name; ?>"><?php echo $item->news_name; ?></a></h3>
+			                        <p class="content"><?php echo $item->news_description; ?></p>
+			                    </div><!--item-->
+			                </div>
+            	<?php
+            			}else{
+            				if($i == 2){
+            					echo '<div class="latest-news">';
+            				}
+            	?>
+								<div class="item">
+			                        <div class="meta"><span class="date"><?php echo date('d/m/Y',$item->created); ?></span><span class="comment">50 Comment (s) </span></div>
+			                        <div class="image"><a href="<?php echo URL::to(''); ?>/news/<?php echo $item->news_alias; ?>-<?php echo $item->news_id; ?>.html" title="<?php echo $item->news_name; ?>"><img alt="<?php echo $item->news_name; ?>" src="<?php echo URL::to(''); ?>/uploads/news/thumb/small_<?php echo $item->news_picture; ?>"></a></div>
+			                        <h3 class="title"><a href="<?php echo URL::to(''); ?>/news/<?php echo $item->news_alias; ?>-<?php echo $item->news_id; ?>.html" title="<?php echo $item->news_name; ?>"><?php echo $item->news_name; ?></a></h3>
+			                        <p class="content"><?php echo $item->news_description; ?></p>
+			                    </div>
+            	<?php
+            			}
+            			$i++;
+            		}
+            	?>
+            	</div>
+            </div><!--news-content-->
+            </div>
+        </div><!--news-->
+<?php endif; ?>
+<?php endif; ?>

@@ -60,7 +60,7 @@ $(document).ready(function() {
 		//retrieve selected uploaded files data
 		var files = $(this)[0].files;
 		imgWidth = ($("#imgwidth2").length > 0) ? $("#imgwidth2").val() : 180;
-		imgheight = ($("#imgheight2").length > 0) ? $("#imgheight2").val() : 180;
+		imgHeight = ($("#imgheight2").length > 0) ? $("#imgheight2").val() : 180;
 		processFiles2(files);
 		
 		return false;

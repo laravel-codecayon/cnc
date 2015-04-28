@@ -32,7 +32,7 @@
 	  <li ><a href="{{ URL::to('config/security') }}" >  {{ Lang::get('core.tab_loginsecurity'); }}  </a></li>
 	  <li ><a href="{{ URL::to('config/translation') }}" >  Translation  <sup class="badge " style="background:#5BC0DE" >New </sup> </a></li>-->
 	   <li ><a href="{{ URL::to('config/log') }}" >  Clear Cache & Logs  </a></li>
-	   <li ><a href="{{ URL::to('config/templateemail') }}" >  Email Template  </a></li>
+	   <!--<li ><a href="{{ URL::to('config/templateemail') }}" >  Email Template  </a></li>-->
 	</ul>	
 <div class="tab-content m-t">
   <div class="tab-pane active use-padding" id="info">	
@@ -108,6 +108,18 @@
 	<input name="cnf_pi" type="text" id="cnf_phone" class="form-control input-sm" value="{{ CNF_pi }}" /> 
 	 </div> 
   </div>
+  <div class="form-group">
+    <label for="ipt" class=" control-label col-md-4">Address </label>
+	<div class="col-md-8">
+	<input name="cnf_address" type="text" id="cnf_address" class="form-control input-sm" value="{{ CNF_ADDRESS }}" /> 
+	 </div> 
+  </div>
+  <div class="form-group">
+    <label for="ipt" class=" control-label col-md-4">Work hours </label>
+	<div class="col-md-8">
+	<input name="cnf_work" type="text" id="cnf_work" class="form-control input-sm" value="{{ CNF_WORK }}" /> 
+	 </div> 
+  </div>
   <!--<div class="form-group">
     <label for="ipt" class=" control-label col-md-4"> Muliti language <br /> <small> Only Layout Interface </small> </label>
 	<div class="col-md-8">
@@ -117,7 +129,7 @@
 			  />  {{ Lang::get('core.fr_enable') }}  <span class="label label-info"> Experimental</span> 
 		</div>	
 	 </div> 
-  </div> 
+  </div> -->
      
    <div class="form-group">
     <label for="ipt" class=" control-label col-md-4">{{ Lang::get('core.fr_mainlanguage'); }} </label>
@@ -132,7 +144,7 @@
 	 </div> 
   </div>   
       
-   <div class="form-group">
+   <!--<div class="form-group">
     <label for="ipt" class=" control-label col-md-4"> Frontend Template </label>
 	<div class="col-md-8">
 			<select class="form-control" name="cnf_theme">

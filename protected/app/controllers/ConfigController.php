@@ -61,12 +61,10 @@ class ConfigController extends BaseController  {
 			$val .= 	"define('CNF_METAKEY','".Input::get('cnf_metakey')."');\n";	
 			$val .= 	"define('CNF_METADESC','".Input::get('cnf_metadesc')."');\n";		
 			$val .= 	"define('CNF_PHONE','".Input::get('cnf_phone')."');\n";
-			$val .= 	"define('CNF_ADDRESS','".Input::get('cnf_address')."');\n";
 			$val .= 	"define('CNF_GROUP','".CNF_GROUP."');\n";	
 			$val .= 	"define('CNF_ACTIVATION','".CNF_ACTIVATION."');\n";	
 			$val .= 	"define('CNF_MULTILANG','".(!is_null(Input::get('cnf_multilang')) ? 1 : 0 )."');\n";
-			//$val .= 	"define('CNF_LANG','".Input::get('cnf_lang')."');\n";
-			$val .= 	"define('CNF_LANG','vi');\n";
+			$val .= 	"define('CNF_LANG','".Input::get('cnf_lang')."');\n";
 			$val .= 	"define('CNF_REGIST','".CNF_REGIST."');\n";	
 			$val .= 	"define('CNF_FRONT','".CNF_FRONT."');\n";		
 			$val .= 	"define('CNF_RECAPTCHA','".CNF_RECAPTCHA."');\n";	
@@ -76,6 +74,8 @@ class ConfigController extends BaseController  {
 			$val .= 	"define('CNF_RECAPTCHAPRIVATEKEY','".CNF_RECAPTCHAPRIVATEKEY."');\n";								
 			$val .= 	"define('CNF_VAT','1');\n";
 			$val .= 	"define('CNF_VAT_VAL','10');\n";
+			$val .= 	"define('CNF_ADDRESS','".Input::get('cnf_address')."');\n";
+			$val .= 	"define('CNF_WORK','".Input::get('cnf_work')."');\n";
 			$val .= 	"?>";
 	
 			$filename = 'setting.php';

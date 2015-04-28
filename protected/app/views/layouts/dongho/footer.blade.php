@@ -1,10 +1,9 @@
 {{--*/ $menus = SiteHelpers::menus('footer') /*--}}
-<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!--$css_item,$box_width,$position,$num_item_row -->
-		
-	<h3>Bài viết xem nhiều</h3>
-	<ul class="news-footer">
-			@foreach ($menus as $menu)
+<ul class="column">
+        	<h3>{{Lang::get("layout.about_us")}}</h3>          
+        	@foreach ($menus as $menu)
 				<li>
+					<i class="fa fa-angle-right"></i>
 					<a 
 					@if($menu['menu_type'] =='external')
 	                    href="{{ URL::to($menu['url'].$menu['module'])}}" 
@@ -13,9 +12,9 @@
 	                @endif 
 
 	                title="{{$menu['menu_name']}}">
-						<span>{{$menu['menu_name']}}</span>
+						{{$menu['menu_name']}}
 					</a>
 				</li>
 			@endforeach
-	</ul>	
-	</div>
+
+        </ul><!--column-->

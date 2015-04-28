@@ -1,0 +1,36 @@
+<div id="contact-page">
+        <div id="contact-us" class="block">
+            <div class="top container move"><img src="<?php echo asset('sximo/themes/dongho/images/contact-icon.png'); ?>"><h2><?php echo Lang::get('layout.send_us_your_ideas'); ?></h2></div>
+            <div class="container content move">
+                <div class="company-info">
+                    <h3><?php echo Lang::get('layout.contact_info'); ?></h3>
+                    <ul>
+                        <li><i class="fa fa-map-marker"></i><div><span><?php echo Lang::get('layout.address'); ?></span><p><?php echo CNF_ADDRESS; ?></p></div></li>
+                        <li><i class="fa fa-phone"></i><div><span><?php echo Lang::get('layout.phone'); ?></span><p><?php echo CNF_PHONE; ?></p></div></li>
+                        <li><i class="fa fa-clock-o"></i><div><span><?php echo Lang::get('layout.work_hour'); ?></span><p><?php echo CNF_WORK; ?></p></div></li>
+                    </ul>
+                </div><!-- company-info -->
+                <div class="message">
+                    <h3><?php echo Lang::get('layout.leave_message'); ?></h3>
+                    <?php if(Session::has('message_contact')): ?>
+                                 <?php echo Session::get('message_contact'); ?>
+                            <?php endif; ?>
+                            <ul class="parsley-error-list">
+                              <?php foreach($errors->all() as $error): ?>
+                                <li><?php echo $error; ?></li>
+                              <?php endforeach; ?>
+                            </ul>
+                    <form method="post" action="<?php echo URL::to(''); ?>/home/contactform">
+                    <div class="left">
+                        <input type="text" value="<?php echo $input['name']; ?>" class="form-control" name="name" placeholder="<?php echo Lang::get('layout.name'); ?>">
+                        <input type="text" value="<?php echo $input['email']; ?>" class="form-control" name="email" placeholder="<?php echo Lang::get('layout.email'); ?>">
+                        <input type="text" value="<?php echo $input['website']; ?>" class="form-control" name="website" placeholder="Website">
+                    </div>
+                    <textarea class="form-control" name="comment" placeholder="<?php echo Lang::get('layout.comment'); ?>"><?php echo $input['comment']; ?></textarea>
+                    <button type="submit"><?php echo Lang::get('layout.send_to_us'); ?></button>
+                    </form>
+                </div><!-- message -->
+            </div>
+        </div><!-- block -->
+        <div class="map clearfix"></div><!-- map -->
+    </div><!-- contact-page -->

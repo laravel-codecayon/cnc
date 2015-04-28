@@ -19,28 +19,12 @@ if (defined('CNF_MULTILANG')) {
 /* End Improvment mailbeez */
 
 Route::get('/', 'HomeController@index');
-Route::get('tin-tuc.html', 'HomeController@tintuc');
-Route::get('tin-tuc/{alias}-{id}.html', 'HomeController@detailtintuc')->where(array('alias' => '(.*)','id'=>'[0-9]+'));
-Route::get('lien-he.html', 'HomeController@contactus');
+Route::get('news.html', 'HomeController@tintuc');
+Route::get('news/{alias}-{id}.html', 'HomeController@detailtintuc')->where(array('alias' => '(.*)','id'=>'[0-9]+'));
+Route::get('contact-us.html', 'HomeController@contactus');
 Route::controller('home', 'HomeController');
-Route::get('dang-ky.html', 'HomeController@dangky');
+Route::get('service.html', 'HomeController@service');
 Route::get('tim-kiem.html', 'HomeController@search');
-Route::get('yeu-thich.html', 'HomeController@yeuthich');
-Route::get('quen-mat-khau.html', 'HomeController@forgotpass');
-Route::get('gio-hang-cua-toi.html', 'HomeController@cart');
-Route::get('thanh-toan-thanh-cong.html', 'HomeController@cartsuccess');
-Route::get('van-chuyen-hang.html', 'HomeController@vanchuyen');
-Route::get('thanh-toan.html', 'HomeController@thanhtoan');
-Route::get('thong-tin-thanh-vien.html', 'HomeController@thongtinthanhvien');
-Route::get('dong-ho-{type}.html', 'HomeController@sexdetail')->where(array('type'=>'(.*)'));
-Route::get('thay-doi-thong-tin-thanh-vien.html', 'HomeController@changeinfo');
-Route::get('doi-mat-khau.html', 'HomeController@changepass');
-Route::get('danh-muc/{alias}-{id}.html', 'HomeController@categorydetail')->where(array('alias' => '(.*)','id'=>'[0-9]+'));
-Route::get('loai/{alias}-{id}.html', 'HomeController@typedetail')->where(array('alias' => '(.*)','id'=>'[0-9]+'));
-Route::get('khuyen-mai/{alias}-{id}.html', 'HomeController@promotiondetail')->where(array('alias' => '(.*)','id'=>'[0-9]+'));
-Route::get('chi-tiet/{alias}-{id}.html', 'HomeController@productdetail')->where(array('alias' => '(.*)','id'=>'[0-9]+'));
-Route::get('tag/{alias}-{id}.html', 'HomeController@tagdetail')->where(array('alias' => '(.*)','id'=>'[0-9]+'));
-
 Route::controller('user', 'UserController');
 //Route::get('category/{alias}-{id}-{page}.html', 'HomeController@categorydetail')->where(array('alias' => '(.*)','id'=>'[0-9]+','page'=>'[0-9]+'));
 //Route::get('category/{alias}-{id}.html', 'HomeController@categorydetail')->where(array('alias' => '(.*)','id'=>'[0-9]+'));

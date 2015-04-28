@@ -4,7 +4,13 @@
 <title><?php echo isset($page['pageTitle']) ? $page['pageTitle'] : CNF_APPNAME ;?></title>
 <meta name="keywords" content="{{ CNF_METAKEY }}">
 <meta name="description" content="{{ CNF_METADESC }}"/>
-<link rel="shortcut icon" href="{{ URL::to('')}}/logo.ico" type="image/x-icon"> 
+<link rel="shortcut icon" href="{{ URL::to('')}}/logo.ico" type="image/x-icon">
+<meta property="og:title" content="<?php echo isset($page['pageTitle']) ? $page['pageTitle'] : CNF_APPNAME ;?>" />
+<meta property="og:url" content="{{$page['detail_url']}}" />
+<meta property="og:description" content="{{$page['description']}}" />
+<meta property="og:image" content="{{$page['image']}}" />
+<meta property="og:width" content="{{$page['width']}}" />
+<meta property="og:height" content="{{$page['height']}}" />
 {{ HTML::style('sximo/themes/dongho/css/bootstrap.min.css')}}
 {{ HTML::style('sximo/themes/dongho/css/bootstrap-theme.min.css')}}
 {{ HTML::style('sximo/themes/dongho/css/font-awesome.css')}}
@@ -35,15 +41,15 @@
 <div class="modal fade" id="seach-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content clearfix">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <form>
-            <input type="text" placeholder="Tìm kiếm" class="form-control search-input">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <form method="get" action="{{URL::to('')}}/home/search">
+            <input name="key" type="text" placeholder="Tìm kiếm" class="form-control search-input">
             <button type="submit" class="btn btn-success search-submit"><i class="fa fa-search"></i></button>
         </form>
     </div>
   </div>
 </div>
-<div id="header" class="home">
+<div id="header" @if($menu == 'index') class="home" @endif>
     <div class="container animated fadein">
         <div id="logo"><a href="{{URL::to('')}}"><img src="{{ asset('sximo/themes/dongho/images/logo.png')}}"></a></div>
         <div class="header-right">
@@ -62,16 +68,18 @@
             </div>
             <div class="consulting"><span>(08) 62 699 699</span><p>Free consulting</p></div>
             <div class="navigator">        
-                <a href="#"><i class="fa fa-envelope"></i></a>
+                <a href="{{URL::to('contact-us.html')}}"><i class="fa fa-envelope"></i></a>
                 <a href="#" class="show-slide-menu"><i class="fa fa-navicon"></i></a>
                 <a href="#" data-toggle="modal" data-target="#seach-popup"><i class="fa fa-search"></i></a>
             </div><!-- navigator -->
         </div><!-- header-right -->
     </div>
     @include('layouts/dongho/topbar')<!--main-menu-->
+    @if($menu == 'index')
     @include('layouts/dongho/slidemenu')
+    @endif
 </div><!--header-->
-<div id="breadcumbs" class="home">
+<div id="breadcumbs" @if($menu == 'index') class="home" @endif>
     <ol class="breadcrumb container">
         {{$page['brc']}}
     </ol>
@@ -112,25 +120,10 @@
 </div><!-- bottom -->
 <div id="footer">
     <div class="container">
-        <ul class="column">
-            <h3>About us</h3>          
-            <li><i class="fa fa-angle-right"></i><a href="#">Physiology</a></li>
-            <li><i class="fa fa-angle-right"></i><a href="#">Vision</a></li>
-            <li><i class="fa fa-angle-right"></i><a href="#">Award &amp; Testimonial </a></li>
-            <li><i class="fa fa-angle-right"></i><a href="#">Meet our team   </a></li>
-        </ul><!--column-->
-        <ul class="column">    
-            <h3>News &amp; Events</h3>
-            <li><i class="fa fa-angle-right"></i><a href="#">Newsletters</a></li>
-            <li><i class="fa fa-angle-right"></i><a href="#">Company news</a></li>
-            <li><i class="fa fa-angle-right"></i><a href="#">Recruitment</a></li>
-            <li><i class="fa fa-angle-right"></i><a href="#">Publication</a></li>
-        </ul><!--column-->
-        <ul class="column">
-            <h3>Privacy &amp; security</h3>
-            <li><i class="fa fa-angle-right"></i><a href="#">Privacy</a></li>
-            <li><i class="fa fa-angle-right"></i><a href="#">Terms of use</a></li>
-        </ul><!--column-->
+        @include('layouts/dongho/footer')
+        
+        @include('layouts/dongho/footer1')
+        @include('layouts/dongho/footer2')
         {{CNF_FOOTER}}<!--column-->
         <div class="column"><img src="{{ asset('sximo/themes/dongho/images/logo-footer.png')}}"></div>
     </div>

@@ -1,0 +1,20 @@
+<?php /**/ $menus = SiteHelpers::menus('footer') /**/ ?>
+<ul class="column">
+        	<h3><?php echo Lang::get("layout.about_us"); ?></h3>          
+        	<?php foreach ($menus as $menu): ?>
+				<li>
+					<i class="fa fa-angle-right"></i>
+					<a 
+					<?php if($menu['menu_type'] =='external'): ?>
+	                    href="<?php echo URL::to($menu['url'].$menu['module']); ?>" 
+	                <?php else: ?>
+	                    href="<?php echo URL::to($menu['module']); ?>" 
+	                <?php endif; ?> 
+
+	                title="<?php echo $menu['menu_name']; ?>">
+						<?php echo $menu['menu_name']; ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+
+        </ul><!--column-->

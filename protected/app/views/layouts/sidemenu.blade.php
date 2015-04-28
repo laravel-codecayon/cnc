@@ -85,6 +85,9 @@
         <li @if(Request::is('advertise')) class="active" @endif>
 			<a href="{{ URL::to('advertise')}}"><i class="icon-drawer2"></i> <span class="nav-label">Quảng cáo</span><span class="fa arrow"></span></a>
 		</li>-->
+		<li @if(Request::is('service')) class="active" @endif>
+			<a href="{{ URL::to('service')}}"><i class="icon-drawer2"></i> <span class="nav-label">{{ Lang::get('core.service') }}</span><span class="fa arrow"></span></a>
+		</li>
 		<li @if(Request::is('pages')) class="active" @endif>
 			<a href="{{ URL::to('pages')}}"><i class="icon-drawer2"></i> <span class="nav-label">{{ Lang::get('core.pages') }}</span><span class="fa arrow"></span></a>
 		</li>

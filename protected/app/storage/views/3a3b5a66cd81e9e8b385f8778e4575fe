@@ -1,0 +1,16 @@
+<?php /**/ $menus = SiteHelpers::menus('top') /**/ ?>
+<ul>
+        <?php foreach ($menus as $menu): ?>
+            <li>
+                <a
+                <?php if($menu['menu_type'] =='external'): ?>
+                    href="<?php echo URL::to($menu['url'].$menu['module']); ?>" 
+                <?php else: ?>
+                    href="<?php echo URL::to($menu['module']); ?>" 
+                <?php endif; ?>
+                >
+                <?php echo $menu['menu_name']; ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
